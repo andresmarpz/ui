@@ -15,12 +15,42 @@ const Links: NextPage = () => {
                     color: '$gray11'
                 }}>
                 This component is inspired on{' '}
-                <LinkPreview
-                    image="/assets/previews/rauno.png"
-                    href="https://twitter.com/raunofreiberg">
+                <LinkPreview href="https://twitter.com/raunofreiberg">
                     @raunofreiberg
                 </LinkPreview>
                 's. Props to him for the idea & design.
+            </Box>
+
+            <Box
+                css={{
+                    marginTop: 32,
+                    color: '$gray11'
+                }}>
+                Here are some more examples:
+                <Box
+                    css={{
+                        marginTop: 48
+                    }}>
+                    <LinkPreview href="https://andresmarpz.com/">
+                        andresmarpz.com
+                    </LinkPreview>
+                </Box>
+                <Box
+                    css={{
+                        marginTop: 48
+                    }}>
+                    <LinkPreview href="https://apple.com/">
+                        apple.com
+                    </LinkPreview>
+                </Box>
+                <Box
+                    css={{
+                        marginTop: 48
+                    }}>
+                    <LinkPreview href="https://github.com/">
+                        github.com
+                    </LinkPreview>
+                </Box>
             </Box>
         </Box>
     );

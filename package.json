@@ -6,12 +6,14 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "previews": "node lib/scanner.js"
     },
     "dependencies": {
         "@radix-ui/colors": "^0.1.8",
         "@radix-ui/react-hover-card": "^0.1.6-rc.41",
         "@stitches/react": "^1.2.8",
+        "filenamify-url": "^3.0.0",
         "next": "12.1.6",
         "react": "18.2.0",
         "react-dom": "18.2.0"
@@ -22,6 +24,8 @@
         "@types/react-dom": "18.0.5",
         "eslint": "8.18.0",
         "eslint-config-next": "12.1.6",
+        "puppeteer": "^15.1.1",
+        "react-scanner": "^1.0.3",
         "typescript": "4.7.4"
     }
 }

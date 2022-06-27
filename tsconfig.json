@@ -16,9 +16,12 @@
         "incremental": true,
         "baseUrl": ".",
         "paths": {
-            "@/components/*": ["components/*"]
+            "@/components/*": ["components/*"],
+            "@/pages/*": ["pages/*"],
+            "@/hooks/*": ["hooks/*"],
+            "@/lib/*": ["lib/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/scanner.js"],
     "exclude": ["node_modules"]
 }

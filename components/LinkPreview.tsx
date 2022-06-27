@@ -1,9 +1,9 @@
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { css, keyframes, styled } from 'stitches.config';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from './Link';
-import ArrowRight from './svgs/ArrowRight';
+import { useEffectOnce } from 'hooks/useEffectOnce';
 
 const StyledImage = css({
     borderRadius: 12
@@ -65,15 +65,30 @@ const Content = StyledContent;
 const Trigger = StyledTrigger;
 
 interface Props {
-    image: string;
+    href: string;
     children?: React.ReactNode;
 }
 
 const LinkPreview = ({
     href,
-    image,
     children
-}: React.HTMLProps<HTMLAnchorElement> & Props) => {
+}: Props & React.HTMLProps<HTMLAnchorElement>) => {
+    const [url, setUrl] = useState('');
+    const [mounted, setMounted] = useState(false);
+
+    const fetchAndSet = async () => {
+        const res = await fetch('/api/filenamify', {
+            method: 'POST',
+            body: JSON.stringify({ href })
+        }).then((res) => res.json());
+        const { url } = res;
+        setUrl(url);
+    };
+
+    useEffectOnce(() => {
+        fetchAndSet();
+    });
+
     return (
         <Root openDelay={70} closeDelay={35}>
             <Trigger asChild>
@@ -88,9 +103,13 @@ const LinkPreview = ({
                     style={{
                         borderRadius: 8
                     }}
-                    src={image}
-                    width={230}
-                    height={140}
+                    src={
+                        url
+                            ? `/assets/previews/${url}.png`
+                            : '/assets/previews/placeholder.png'
+                    }
+                    width={232}
+                    height={174}
                     alt="link hover image"
                     priority={true}
                 />

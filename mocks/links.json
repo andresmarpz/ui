@@ -1,0 +1,78 @@
+{
+  "LinkPreview": {
+    "instances": [
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://twitter.com/raunofreiberg"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 18,
+            "column": 17
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://andresmarpz.com/"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 34,
+            "column": 21
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://apple.com/"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 42,
+            "column": 21
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://github.com/"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 50,
+            "column": 21
+          }
+        }
+      }
+    ]
+  }
+}
