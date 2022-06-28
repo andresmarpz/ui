@@ -1,16 +1,24 @@
 import Box from '@/components/Box';
 import Footer from '@/components/Footer';
 import React from 'react';
+import Header from './Header';
+
 const Layout = ({ children }: React.PropsWithChildren) => {
     return (
         <Box
             css={{
-                margin: 'auto',
-                padding: 16,
                 maxWidth: '692px',
-                minHeight: '100vh'
+                margin: 'auto',
+                padding: 16
             }}>
-            {children}
+            <Header />
+            <Box
+                css={{
+                    minHeight: '90vh'
+                }}>
+                {children}
+            </Box>
+
             <Footer />
         </Box>
     );

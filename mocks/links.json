@@ -14,7 +14,7 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 18,
+            "line": 40,
             "column": 17
           }
         }
@@ -26,14 +26,32 @@
           "importType": "ImportDefaultSpecifier"
         },
         "props": {
-          "href": "https://andresmarpz.com/"
+          "href": "https://radix-ui.com/"
         },
         "propsSpread": false,
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 34,
-            "column": 21
+            "line": 52,
+            "column": 17
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://andresmarpz.com"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 87,
+            "column": 25
           }
         }
       },
@@ -50,8 +68,8 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 42,
-            "column": 21
+            "line": 92,
+            "column": 25
           }
         }
       },
@@ -68,8 +86,8 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 50,
-            "column": 21
+            "line": 97,
+            "column": 25
           }
         }
       }

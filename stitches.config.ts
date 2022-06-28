@@ -1,6 +1,6 @@
 import { createStitches } from '@stitches/react';
 
-import { gray } from '@radix-ui/colors';
+import { gray, blue } from '@radix-ui/colors';
 
 export const {
     styled,
@@ -14,14 +14,22 @@ export const {
 } = createStitches({
     theme: {
         colors: {
-            ...gray
+            ...gray,
+            ...blue
         }
     },
     media: {
         bp1: '(min-width: 480px)'
     },
     utils: {
-        marginX: (value: number) => ({ marginLeft: value, marginRight: value })
+        marginX: (value: number) => ({
+            marginLeft: value,
+            marginRight: value
+        }),
+        paddingY: (value: number) => ({
+            paddingTop: value,
+            paddingBottom: value
+        })
     }
 });
 

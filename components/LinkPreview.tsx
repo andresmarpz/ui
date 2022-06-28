@@ -10,22 +10,22 @@ const StyledImage = css({
 });
 
 const slideUpAndFade = keyframes({
-    '0%': { transform: 'translateY(40px)' },
+    '0%': { transform: 'translateY(20px)' },
     '100%': { transform: 'translateY(0)' }
 });
 
 const slideRightAndFade = keyframes({
-    '0%': { transform: 'translateX(-40px)' },
+    '0%': { transform: 'translateX(-20px)' },
     '100%': { transform: 'translateX(0)' }
 });
 
 const slideDownAndFade = keyframes({
-    '0%': { transform: 'translateY(-40px)' },
+    '0%': { transform: 'translateY(-20px)' },
     '100%': { transform: 'translateY(0)' }
 });
 
 const slideLeftAndFade = keyframes({
-    '0%': { transform: 'translateX(40px)' },
+    '0%': { transform: 'translateX(20px)' },
     '100%': { transform: 'translateX(0)' }
 });
 
@@ -45,7 +45,7 @@ const StyledContent = styled(HoverCard.Content, {
     boxShadow: `hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px`,
     transformOrigin: 'var(--radix-hover-card-content-transform-origin)',
     '@media (prefers-reduced-motion: no-preference)': {
-        animationDuration: '1s',
+        animationDuration: '300ms',
         animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
         animationFillMode: 'forwards',
         willChange: 'transform, opacity',
@@ -74,7 +74,6 @@ const LinkPreview = ({
     children
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
     const [url, setUrl] = useState('');
-    const [mounted, setMounted] = useState(false);
 
     const fetchAndSet = async () => {
         const res = await fetch('/api/filenamify', {
