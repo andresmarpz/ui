@@ -14,7 +14,7 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 40,
+            "line": 112,
             "column": 17
           }
         }
@@ -26,13 +26,13 @@
           "importType": "ImportDefaultSpecifier"
         },
         "props": {
-          "href": "https://radix-ui.com/"
+          "href": "https://radix-ui.com"
         },
         "propsSpread": false,
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 52,
+            "line": 124,
             "column": 17
           }
         }
@@ -50,7 +50,7 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 87,
+            "line": 162,
             "column": 25
           }
         }
@@ -62,13 +62,13 @@
           "importType": "ImportDefaultSpecifier"
         },
         "props": {
-          "href": "https://apple.com/"
+          "href": "https://apple.com"
         },
         "propsSpread": false,
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 92,
+            "line": 167,
             "column": 25
           }
         }
@@ -80,13 +80,13 @@
           "importType": "ImportDefaultSpecifier"
         },
         "props": {
-          "href": "https://github.com/"
+          "href": "https://github.com"
         },
         "propsSpread": false,
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 97,
+            "line": 172,
             "column": 25
           }
         }

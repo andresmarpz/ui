@@ -65,33 +65,19 @@ const Content = StyledContent;
 const Trigger = StyledTrigger;
 
 interface Props {
-    href: string;
+    // href: string;
+    object: any;
     children?: React.ReactNode;
 }
 
 const LinkPreview = ({
-    href,
+    object,
     children
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
-    const [url, setUrl] = useState('');
-
-    const fetchAndSet = async () => {
-        const res = await fetch('/api/filenamify', {
-            method: 'POST',
-            body: JSON.stringify({ href })
-        }).then((res) => res.json());
-        const { url } = res;
-        setUrl(url);
-    };
-
-    useEffectOnce(() => {
-        fetchAndSet();
-    });
-
     return (
         <Root openDelay={70} closeDelay={35}>
             <Trigger asChild>
-                <Link href={href}>{children}</Link>
+                <Link href={'https://' + object.href}>{children}</Link>
             </Trigger>
             <Content
                 sideOffset={12}
@@ -102,11 +88,9 @@ const LinkPreview = ({
                     style={{
                         borderRadius: 8
                     }}
-                    src={
-                        url
-                            ? `/assets/previews/${url}.png`
-                            : '/assets/previews/placeholder.png'
-                    }
+                    {...object}
+                    placeholder="blur"
+                    blurDataURL={object.base64}
                     width={232}
                     height={174}
                     alt="link hover image"

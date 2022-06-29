@@ -16,6 +16,8 @@
         "incremental": true,
         "baseUrl": ".",
         "paths": {
+            "@/*": ["./*"],
+            "@/assets/*": ["./public/assets/*"],
             "@/components/*": ["components/*"],
             "@/pages/*": ["pages/*"],
             "@/hooks/*": ["hooks/*"],

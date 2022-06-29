@@ -1,9 +1,12 @@
-import Box from '@/components/Box';
 import LinkPreview from '@/components/LinkPreview';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
 import { NextPage } from 'next';
 import { styled } from 'stitches.config';
+import { getPlaiceholder } from 'plaiceholder';
+import path from 'path';
+import { promises as fs } from 'fs';
+import React from 'react';
 
 const Item = styled('li', {
     marginTop: 24
@@ -21,7 +24,50 @@ const StyledHr = styled('hr', {
     margin: 'auto'
 });
 
-const Links: NextPage = () => {
+export async function getStaticProps(context: any) {
+    const base64images: any[] = [];
+    const previewsDirectory = path.join(
+        process.cwd(),
+        '/public/assets/previews'
+    );
+    const filenames = await fs.readdir(previewsDirectory);
+    const previews = filenames.map(async (filename) => {
+        const { base64, img } = await getPlaiceholder(
+            '/assets/previews/' + filename
+        );
+        base64images.push({
+            href: filename
+                .replaceAll('!', '/')
+                .substring(0, filename.length - 4),
+            base64,
+            ...img
+        });
+    });
+    await Promise.all(previews);
+    console.log(base64images);
+
+    return {
+        props: {
+            base64images
+        }
+    };
+}
+
+interface Props {
+    base64images: any[];
+}
+
+const Links: NextPage<Props> = ({ base64images }: Props) => {
+    const [images, setImages] = React.useState(base64images);
+    const getData = (href: string) => {
+        const url = href
+            .substring(href.indexOf('/') + 2, href.length)
+            .replaceAll('!', '/');
+
+        const image = images.find((image) => image.href === url);
+        return image;
+    };
+
     return (
         <>
             <Title size="large" css={{ marginTop: 40 }}>
@@ -37,7 +83,9 @@ const Links: NextPage = () => {
 
             <Paragraph css={{ marginTop: 48 }}>
                 This component is inspired on{' '}
-                <LinkPreview href="https://twitter.com/raunofreiberg">
+                <LinkPreview
+                    href="https://twitter.com/raunofreiberg/"
+                    object={getData('https://twitter.com/raunofreiberg')}>
                     @raunofreiberg
                 </LinkPreview>
                 's. Props to him for the idea & design.
@@ -49,7 +97,7 @@ const Links: NextPage = () => {
                     color: '$gray11'
                 }}>
                 In this case, it is{' '}
-                <LinkPreview href="https://radix-ui.com/">Radix UI</LinkPreview>{' '}
+                {/* <LinkPreview href="https://radix-ui.com">Radix UI</LinkPreview>{' '} */}
                 under the hood. They provide a set of unstyled and accessible
                 primitives which are amazing building blocks for a great user
                 experience.
@@ -85,23 +133,23 @@ const Links: NextPage = () => {
                     marginTop: 32
                 }}>
                 Here are some other examples:
-                <ul>
+                {/* <ul>
                     <Item>
                         <LinkPreview href="https://andresmarpz.com">
                             andresmarpz.com
                         </LinkPreview>
                     </Item>
                     <Item>
-                        <LinkPreview href="https://apple.com/">
+                        <LinkPreview href="https://apple.com">
                             apple.com
                         </LinkPreview>
                     </Item>
                     <Item>
-                        <LinkPreview href="https://github.com/">
+                        <LinkPreview href="https://github.com">
                             github.com
                         </LinkPreview>
                     </Item>
-                </ul>
+                </ul> */}
             </Paragraph>
         </>
     );
