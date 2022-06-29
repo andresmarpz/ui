@@ -9,14 +9,14 @@
         },
         "props": {
           "href": "https://twitter.com/raunofreiberg/",
-          "object": "(CallExpression)"
+          "imageData": "(CallExpression)"
         },
         "propsSpread": false,
         "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 85,
-            "column": 17
+            "line": 93,
+            "column": 21
           }
         }
       },
@@ -28,14 +28,33 @@
         },
         "props": {
           "href": "https://radix-ui.com/",
-          "object": "(CallExpression)"
+          "imageData": "(CallExpression)"
         },
         "propsSpread": false,
         "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 99,
-            "column": 17
+            "line": 109,
+            "column": 21
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://plaiceholder.co/",
+          "imageData": "(CallExpression)"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
+          "start": {
+            "line": 160,
+            "column": 21
           }
         }
       },
@@ -47,14 +66,14 @@
         },
         "props": {
           "href": "https://andresmarpz.com/",
-          "object": "(CallExpression)"
+          "imageData": "(CallExpression)"
         },
         "propsSpread": false,
         "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 141,
-            "column": 25
+            "line": 178,
+            "column": 29
           }
         }
       },
@@ -66,14 +85,14 @@
         },
         "props": {
           "href": "https://apple.com/",
-          "object": "(CallExpression)"
+          "imageData": "(CallExpression)"
         },
         "propsSpread": false,
         "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 148,
-            "column": 25
+            "line": 185,
+            "column": 29
           }
         }
       },
@@ -85,14 +104,14 @@
         },
         "props": {
           "href": "https://github.com/",
-          "object": "(CallExpression)"
+          "imageData": "(CallExpression)"
         },
         "propsSpread": false,
         "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 155,
-            "column": 25
+            "line": 192,
+            "column": 29
           }
         }
       }

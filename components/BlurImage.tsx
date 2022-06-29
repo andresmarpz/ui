@@ -12,16 +12,18 @@ interface Image {
 
 const blur = keyframes({
     '0%': {
-        filter: 'blur(40px)'
+        filter: 'blur(40px)',
+        opacity: 0
     },
     '100%': {
-        filter: 'blur(0px)'
+        filter: 'blur(0px)',
+        opacity: 1
     }
 });
 
 const StyledImage = styled(Image, {
     transition: '250ms ease-in-out',
-    transitionProperty: 'filter transform',
+    transitionProperty: 'filter transform opacity',
     variants: {
         blur: {
             true: {

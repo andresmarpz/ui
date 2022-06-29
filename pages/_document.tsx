@@ -1,9 +1,14 @@
+import { getCssText } from '@/stitches.config';
 import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document(props: any) {
     return (
         <Html lang="en">
             <Head>
+                <style
+                    id="stitches"
+                    dangerouslySetInnerHTML={{ __html: getCssText() }}
+                />
                 <link rel="icon" href="/favicon.ico" />
                 <link
                     rel="preload"

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from './Link';
 import { useEffectOnce } from 'hooks/useEffectOnce';
 import BlurImage from './BlurImage';
+import { ImageData } from '@/pages/links';
 
 const StyledImage = css({
     borderRadius: 12
@@ -67,36 +68,39 @@ const Trigger = StyledTrigger;
 
 interface Props {
     href: string;
-    object: any;
+    imageData: ImageData;
     children?: React.ReactNode;
 }
 
 const LinkPreview = ({
-    href,
-    object,
+    imageData,
     children
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
-    const { base64, src } = object;
+    const { base64, src, href } = imageData;
     const [didBlur, setDidBlur] = useState(false);
 
     return (
         <Root openDelay={70} closeDelay={35}>
             <Trigger asChild>
-                <Link href={'https://' + object.href}>{children}</Link>
+                <Link href={href} target="_blank">
+                    {children}
+                </Link>
             </Trigger>
             <Content
                 sideOffset={12}
                 side="top"
                 avoidCollisions={true}
                 collisionTolerance={15}>
-                <BlurImage
-                    setDidBlur={setDidBlur}
-                    shouldBlur={didBlur === false}
-                    src={src}
-                    width={250}
-                    height={180}
-                    base64={base64}
-                />
+                <a href={href} target="_blank">
+                    <BlurImage
+                        setDidBlur={setDidBlur}
+                        shouldBlur={didBlur === false}
+                        src={src}
+                        width={250}
+                        height={180}
+                        base64={base64}
+                    />
+                </a>
             </Content>
         </Root>
     );
