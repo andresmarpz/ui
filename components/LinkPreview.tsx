@@ -1,15 +1,9 @@
 import * as HoverCard from '@radix-ui/react-hover-card';
-import { css, keyframes, styled } from 'stitches.config';
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { keyframes, styled } from 'stitches.config';
 import Link from './Link';
-import { useEffectOnce } from 'hooks/useEffectOnce';
 import BlurImage from './BlurImage';
-import { ImageData } from '@/pages/links';
-
-const StyledImage = css({
-    borderRadius: 12
-});
+import { ImageData } from '@/pages/link-preview';
+import { useState } from 'react';
 
 const slideUpAndFade = keyframes({
     '0%': { transform: 'translateY(20px)' },
@@ -68,7 +62,7 @@ const Trigger = StyledTrigger;
 
 interface Props {
     href: string;
-    imageData: ImageData;
+    imageData: ImageData | undefined;
     children?: React.ReactNode;
 }
 
@@ -76,13 +70,14 @@ const LinkPreview = ({
     imageData,
     children
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
-    const { base64, src, href } = imageData;
     const [didBlur, setDidBlur] = useState(false);
+    if (!imageData) return <></>;
+    const { base64, src, href } = imageData;
 
     return (
         <Root openDelay={70} closeDelay={35}>
             <Trigger asChild>
-                <Link href={href} target="_blank">
+                <Link href={href} target="_blank" rel="noreferrer">
                     {children}
                 </Link>
             </Trigger>
@@ -91,7 +86,7 @@ const LinkPreview = ({
                 side="top"
                 avoidCollisions={true}
                 collisionTolerance={15}>
-                <a href={href} target="_blank">
+                <a href={href} target="_blank" rel="noreferrer">
                     <BlurImage
                         setDidBlur={setDidBlur}
                         shouldBlur={didBlur === false}

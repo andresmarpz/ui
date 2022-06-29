@@ -34,7 +34,7 @@ export interface ImageData {
     type?: string | undefined;
 }
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps() {
     const base64images: ImageData[] = [];
     const previewsDirectory = path.join(
         process.cwd(),
@@ -68,7 +68,7 @@ interface Props {
 
 const Links: NextPage<Props> = ({ base64images }: Props) => {
     const getData = (href: string) => {
-        return base64images.find((image) => image.href === href)!;
+        return base64images.find((image) => image.href === href);
     };
 
     return (
@@ -97,7 +97,7 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                         )}>
                         @raunofreiberg
                     </LinkPreview>
-                    's. Props to him for the idea & design.
+                    &apos;s. Props to him for the idea & design.
                 </Paragraph>
 
                 <Title css={{ marginTop: 48 }}>Build</Title>

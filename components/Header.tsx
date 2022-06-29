@@ -22,9 +22,7 @@ const StyledButton = styled('a', {
     }
 });
 
-interface Props {}
-
-const Header = ({}: Props) => {
+const Header = () => {
     const router = useRouter();
 
     return (
