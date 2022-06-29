@@ -77,14 +77,7 @@ const LinkPreview = ({
     children
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
     const { base64, src } = object;
-    const [mounted, setMounted] = useState(false);
     const [didBlur, setDidBlur] = useState(false);
-
-    useEffectOnce(() => setMounted(true));
-
-    useEffect(() => {
-        console.log(didBlur);
-    }, [didBlur]);
 
     return (
         <Root openDelay={70} closeDelay={35}>

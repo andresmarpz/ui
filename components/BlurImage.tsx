@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import { styled } from '@/stitches.config';
+import { keyframes, styled } from '@/stitches.config';
 import Box from './Box';
 
 interface Image {
@@ -10,16 +10,22 @@ interface Image {
     base64: string;
 }
 
+const blur = keyframes({
+    '0%': {
+        filter: 'blur(40px)'
+    },
+    '100%': {
+        filter: 'blur(0px)'
+    }
+});
+
 const StyledImage = styled(Image, {
-    transition: '400ms ease-in-out',
+    transition: '250ms ease-in-out',
     transitionProperty: 'filter transform',
     variants: {
         blur: {
             true: {
-                filter: 'blur(40px)'
-            },
-            false: {
-                filter: 'blur(0px)'
+                animation: `${blur} 250ms ease-in-out`
             }
         }
     },
@@ -53,7 +59,7 @@ const BlurImage = ({
                 placeholder="blur"
                 blurDataURL={base64}
                 priority={true}
-                blur={shouldBlur && loading}
+                blur={!shouldBlur && loading}
                 onLoadingComplete={() => {
                     setLoading(false);
                     setDidBlur(true);

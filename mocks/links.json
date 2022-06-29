@@ -15,8 +15,84 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 86,
+            "line": 85,
             "column": 17
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://radix-ui.com/",
+          "object": "(CallExpression)"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 99,
+            "column": 17
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://andresmarpz.com/",
+          "object": "(CallExpression)"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 141,
+            "column": 25
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://apple.com/",
+          "object": "(CallExpression)"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 148,
+            "column": 25
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
+          "href": "https://github.com/",
+          "object": "(CallExpression)"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
+          "start": {
+            "line": 155,
+            "column": 25
           }
         }
       }
