@@ -44,7 +44,6 @@ export async function getStaticProps(context: any) {
         });
     });
     await Promise.all(previews);
-    console.log(base64images);
 
     return {
         props: {

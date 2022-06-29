@@ -1,9 +1,10 @@
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { css, keyframes, styled } from 'stitches.config';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from './Link';
 import { useEffectOnce } from 'hooks/useEffectOnce';
+import BlurImage from './BlurImage';
 
 const StyledImage = css({
     borderRadius: 12
@@ -65,15 +66,26 @@ const Content = StyledContent;
 const Trigger = StyledTrigger;
 
 interface Props {
-    // href: string;
+    href: string;
     object: any;
     children?: React.ReactNode;
 }
 
 const LinkPreview = ({
+    href,
     object,
     children
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
+    const { base64, src } = object;
+    const [mounted, setMounted] = useState(false);
+    const [didBlur, setDidBlur] = useState(false);
+
+    useEffectOnce(() => setMounted(true));
+
+    useEffect(() => {
+        console.log(didBlur);
+    }, [didBlur]);
+
     return (
         <Root openDelay={70} closeDelay={35}>
             <Trigger asChild>
@@ -84,17 +96,13 @@ const LinkPreview = ({
                 side="top"
                 avoidCollisions={true}
                 collisionTolerance={15}>
-                <Image
-                    style={{
-                        borderRadius: 8
-                    }}
-                    {...object}
-                    placeholder="blur"
-                    blurDataURL={object.base64}
-                    width={232}
-                    height={174}
-                    alt="link hover image"
-                    priority={true}
+                <BlurImage
+                    setDidBlur={setDidBlur}
+                    shouldBlur={didBlur === false}
+                    src={src}
+                    width={250}
+                    height={180}
+                    base64={base64}
                 />
             </Content>
         </Root>

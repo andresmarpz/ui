@@ -15,7 +15,12 @@ const nextConfig = {
         ];
     },
     images: {
-        domains: []
+        domains: ['cataas.com']
+    },
+    experimental: {
+        images: {
+            allowFutureImage: true
+        }
     }
 };
 

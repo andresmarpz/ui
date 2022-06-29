@@ -8,86 +8,15 @@
           "importType": "ImportDefaultSpecifier"
         },
         "props": {
-          "href": "https://twitter.com/raunofreiberg"
+          "href": "https://twitter.com/raunofreiberg/",
+          "object": "(CallExpression)"
         },
         "propsSpread": false,
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/links.tsx",
           "start": {
-            "line": 112,
+            "line": 86,
             "column": 17
-          }
-        }
-      },
-      {
-        "importInfo": {
-          "local": "LinkPreview",
-          "moduleName": "@/components/LinkPreview",
-          "importType": "ImportDefaultSpecifier"
-        },
-        "props": {
-          "href": "https://radix-ui.com"
-        },
-        "propsSpread": false,
-        "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
-          "start": {
-            "line": 124,
-            "column": 17
-          }
-        }
-      },
-      {
-        "importInfo": {
-          "local": "LinkPreview",
-          "moduleName": "@/components/LinkPreview",
-          "importType": "ImportDefaultSpecifier"
-        },
-        "props": {
-          "href": "https://andresmarpz.com"
-        },
-        "propsSpread": false,
-        "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
-          "start": {
-            "line": 162,
-            "column": 25
-          }
-        }
-      },
-      {
-        "importInfo": {
-          "local": "LinkPreview",
-          "moduleName": "@/components/LinkPreview",
-          "importType": "ImportDefaultSpecifier"
-        },
-        "props": {
-          "href": "https://apple.com"
-        },
-        "propsSpread": false,
-        "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
-          "start": {
-            "line": 167,
-            "column": 25
-          }
-        }
-      },
-      {
-        "importInfo": {
-          "local": "LinkPreview",
-          "moduleName": "@/components/LinkPreview",
-          "importType": "ImportDefaultSpecifier"
-        },
-        "props": {
-          "href": "https://github.com"
-        },
-        "propsSpread": false,
-        "location": {
-          "file": "/home/andresmarpz/development/ui/pages/links.tsx",
-          "start": {
-            "line": 172,
-            "column": 25
           }
         }
       }
