@@ -1,4 +1,3 @@
-import Box from '@/components/Box';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { styled } from 'stitches.config';

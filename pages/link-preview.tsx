@@ -125,12 +125,6 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                             css={{
                                 marginTop: 8
                             }}>
-                            {/* I went for this option since it is fairly simple to
-                        serve static files with Next.js. Hyperlinks are gathered
-                        from every page at build time and previews are generated
-                        and served as assets. The upside is that these images
-                        can also be cached easily and provide a great user
-                        experience. */}
                             <Span>Static Images</Span>: Previews are generated
                             at build time and served as assets. Using Next.js
                             getStaticProps we can scan all available previews
@@ -141,8 +135,9 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                             <Span>Fetching On Load</Span>: I thought about
                             dynamically generating previews through an API on
                             page load and keeping them in state. I ended up
-                            discarding this option since it was not my preferred
-                            approach.
+                            discarding this option since most APIs have a
+                            limited rate per month, and having my own also means
+                            I can just go for the static approach.
                         </Item>
                     </ul>
                 </Paragraph>
@@ -165,7 +160,9 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                     .
                     <br />
                     <br />I decided to generate base64 images on getStaticProps
-                    to minimize hardcoding.
+                    to minimize hardcoding. This way, it&apos;s possible to
+                    automatically build an object with all the data needed and
+                    pass it through page props.
                 </Paragraph>
 
                 <Paragraph
