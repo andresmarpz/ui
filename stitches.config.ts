@@ -1,6 +1,13 @@
 import { createStitches } from '@stitches/react';
 
-import { gray, blue } from '@radix-ui/colors';
+import {
+    gray,
+    grayDark,
+    slate,
+    slateDark,
+    blue,
+    blueDark
+} from '@radix-ui/colors';
 
 export const {
     styled,
@@ -14,7 +21,20 @@ export const {
 } = createStitches({
     theme: {
         colors: {
+            background: 'white',
+            subtleBackground: gray.gray2,
+            elementBackground: blue.blue3,
+            hoverElementBackground: blue.blue4,
+            activeElementBackground: blue.blue5,
+            subtleBorder: gray.gray6,
+            elementBorder: blue.blue7,
+            hoveredElementBorder: blue.blue8,
+            solidBackground: gray.gray9,
+            hoveredSolidBackground: gray.gray10,
+            textPrimary: gray.gray11,
+            textHighlight: slate.slate12,
             ...gray,
+            ...slate,
             ...blue
         }
     },
@@ -33,6 +53,26 @@ export const {
     }
 });
 
+export const darkTheme = createTheme({
+    colors: {
+        background: grayDark.gray1,
+        subtleBackground: grayDark.gray2,
+        elementBackground: blueDark.blue3,
+        hoverElementBackground: blueDark.blue4,
+        activeElementBackground: blueDark.blue5,
+        subtleBorder: grayDark.gray6,
+        elementBorder: blueDark.blue7,
+        hoveredElementBorder: blueDark.blue8,
+        solidBackground: grayDark.gray9,
+        hoveredSolidBackground: grayDark.gray10,
+        textPrimary: grayDark.gray11,
+        textHighlight: slateDark.slate12,
+        ...grayDark,
+        ...slateDark,
+        ...blueDark
+    }
+});
+
 export const globalStyles = globalCss({
     '@font-face': {
         fontFamily: 'Inter',
@@ -45,6 +85,10 @@ export const globalStyles = globalCss({
         margin: 0,
         fontFamily: `-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
 		 Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif`
+    },
+    body: {
+        transition: 'background-color 0.1s ease',
+        backgroundColor: theme.colors.background
     },
     '*': {
         boxSizing: 'border-box'

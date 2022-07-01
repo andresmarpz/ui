@@ -1,19 +1,19 @@
-import Image from 'next/image';
 import { styled } from 'stitches.config';
 
 const StyledFooter = styled('footer', {
-    padding: 12
+    padding: 12,
+    color: '$textPrimary'
+});
+
+const StyledSpan = styled('span', {
+    color: '$textHighlight'
 });
 
 const Footer = () => {
     return (
         <StyledFooter>
-            <Image
-                src="/assets/vercel.svg"
-                alt="Vercel Logo"
-                width={72}
-                height={16}
-            />
+            Deployed at <StyledSpan>▲</StyledSpan>
+            Vercel
         </StyledFooter>
     );
 };

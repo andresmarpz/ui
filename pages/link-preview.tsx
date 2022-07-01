@@ -14,7 +14,7 @@ const Item = styled('li', {
 });
 
 const Span = styled('span', {
-    color: '$gray12',
+    color: '$textHighlight',
     fontStyle: 'italic'
 });
 
@@ -101,10 +101,7 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                 </Paragraph>
 
                 <Title css={{ marginTop: 48 }}>Build</Title>
-                <Paragraph
-                    css={{
-                        color: '$gray11'
-                    }}>
+                <Paragraph>
                     In this case, it is{' '}
                     <LinkPreview
                         href="https://radix-ui.com/"

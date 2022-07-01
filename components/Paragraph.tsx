@@ -1,7 +1,7 @@
 import { styled } from '@stitches/react';
 
 const Paragraph = styled('div', {
-    color: '$gray11',
+    color: '$textPrimary',
     lineHeight: 1.5,
 
     variants: {
