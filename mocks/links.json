@@ -8,15 +8,15 @@
           "importType": "ImportDefaultSpecifier"
         },
         "props": {
-          "href": "https://twitter.com/raunofreiberg/",
+          "href": "https://nextjs.org/",
           "imageData": "(CallExpression)"
         },
         "propsSpread": false,
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 93,
-            "column": 21
+            "line": 98,
+            "column": 25
           }
         }
       },
@@ -27,7 +27,7 @@
           "importType": "ImportDefaultSpecifier"
         },
         "props": {
-          "href": "https://radix-ui.com/",
+          "href": "https://twitter.com/raunofreiberg/",
           "imageData": "(CallExpression)"
         },
         "propsSpread": false,
@@ -46,6 +46,25 @@
           "importType": "ImportDefaultSpecifier"
         },
         "props": {
+          "href": "https://radix-ui.com/",
+          "imageData": "(CallExpression)"
+        },
+        "propsSpread": false,
+        "location": {
+          "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
+          "start": {
+            "line": 122,
+            "column": 21
+          }
+        }
+      },
+      {
+        "importInfo": {
+          "local": "LinkPreview",
+          "moduleName": "@/components/LinkPreview",
+          "importType": "ImportDefaultSpecifier"
+        },
+        "props": {
           "href": "https://plaiceholder.co/",
           "imageData": "(CallExpression)"
         },
@@ -53,7 +72,7 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 160,
+            "line": 168,
             "column": 21
           }
         }
@@ -72,7 +91,7 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 178,
+            "line": 189,
             "column": 29
           }
         }
@@ -91,7 +110,7 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 185,
+            "line": 196,
             "column": 29
           }
         }
@@ -110,7 +129,7 @@
         "location": {
           "file": "/home/andresmarpz/development/ui/pages/link-preview.tsx",
           "start": {
-            "line": 192,
+            "line": 203,
             "column": 29
           }
         }

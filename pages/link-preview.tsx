@@ -8,6 +8,8 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import React from 'react';
 import Head from 'next/head';
+import Browser from '@/components/Browser';
+import Box from '@/components/Box';
 
 const Item = styled('li', {
     marginTop: 24
@@ -82,10 +84,28 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                 </Title>
                 <Paragraph
                     css={{
-                        fontStyle: 'italic'
+                        fontStyle: 'italic',
+                        marginBottom: 40
                     }}>
                     Provide a visual preview of the link on hover.
                 </Paragraph>
+                <Browser>
+                    <Box
+                        css={{
+                            backgroundColor: '$gray1',
+                            padding: 12,
+                            borderRadius: 5,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
+                        <LinkPreview
+                            href="https://nextjs.org/"
+                            imageData={getData('https://nextjs.org/')}>
+                            Next.js
+                        </LinkPreview>
+                    </Box>
+                </Browser>
                 <StyledHr css={{ marginTop: 48 }} />
 
                 <Paragraph css={{ marginTop: 48 }}>

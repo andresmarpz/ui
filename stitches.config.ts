@@ -6,7 +6,9 @@ import {
     slate,
     slateDark,
     blue,
-    blueDark
+    blueDark,
+    red,
+    redDark
 } from '@radix-ui/colors';
 
 export const {
@@ -35,7 +37,8 @@ export const {
             textHighlight: slate.slate12,
             ...gray,
             ...slate,
-            ...blue
+            ...blue,
+            ...red
         }
     },
     media: {
@@ -69,7 +72,8 @@ export const darkTheme = createTheme({
         textHighlight: slateDark.slate12,
         ...grayDark,
         ...slateDark,
-        ...blueDark
+        ...blueDark,
+        ...redDark
     }
 });
 
