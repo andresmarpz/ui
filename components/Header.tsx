@@ -38,24 +38,19 @@ const StyledToggle = styled('button', {
     backgroundColor: '$gray3'
 });
 
-const ToggleTheme = ({
-    theme,
-    toggleTheme
-}: {
-    theme: string | undefined;
-    toggleTheme: () => void;
-}) => {
+const ToggleTheme = ({ toggleTheme }: { toggleTheme: () => void }) => {
     /*
 		Since Stitches server-renders css, we can't know the system
 		preferred theme until the component is mounted.
 	*/
     const [mounted, setMounted] = useState(false);
+    const { resolvedTheme } = useTheme();
     useEffectOnce(() => setMounted(true));
 
     return (
         <StyledToggle onClick={toggleTheme}>
             {mounted ? (
-                theme === 'dark' ? (
+                resolvedTheme === 'dark' ? (
                     <Sun />
                 ) : (
                     <Moon />
@@ -90,7 +85,7 @@ const Header = () => {
                     </Link>
                 )}
             </Box>
-            <ToggleTheme theme={theme} toggleTheme={toggleTheme} />
+            <ToggleTheme toggleTheme={toggleTheme} />
         </StyledHeader>
     );
 };

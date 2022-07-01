@@ -81,14 +81,12 @@ export const globalStyles = globalCss({
         src: 'url("/assets/fonts/inter-var-latin.woff2")'
     },
     'html, body': {
+        transition: 'background-color 0.1s ease',
+        backgroundColor: theme.colors.background,
         padding: 0,
         margin: 0,
         fontFamily: `-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
 		 Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif`
-    },
-    body: {
-        transition: 'background-color 0.1s ease',
-        backgroundColor: theme.colors.background
     },
     '*': {
         boxSizing: 'border-box'

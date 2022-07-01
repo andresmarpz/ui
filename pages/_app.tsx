@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
+            enableSystem={true}
             value={{
                 light: 'light',
                 dark: darkTheme.className
