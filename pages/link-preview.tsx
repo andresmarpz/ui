@@ -88,7 +88,7 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                     }}>
                     Provide a visual preview of the link on hover.
                 </Paragraph>
-                <Browser>
+                <Browser center>
                     <Box
                         css={{
                             backgroundColor: '$gray1',
@@ -96,7 +96,8 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                             borderRadius: 5,
                             display: 'flex',
                             justifyContent: 'center',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            width: 'auto'
                         }}>
                         <LinkPreview
                             href="https://nextjs.org/"

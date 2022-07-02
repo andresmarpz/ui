@@ -6,23 +6,23 @@ import BlurImage from './BlurImage';
 import Link from './Link';
 
 const slideUpAndFade = keyframes({
-    '0%': { transform: 'translateY(20px)' },
-    '100%': { transform: 'translateY(0)' }
+    '0%': { transform: 'translateY(20px) scale(0)' },
+    '100%': { transform: 'translateY(0) scale(1)' }
 });
 
 const slideRightAndFade = keyframes({
-    '0%': { transform: 'translateX(-20px)' },
-    '100%': { transform: 'translateX(0)' }
+    '0%': { transform: 'translateX(-20px) scale(0)' },
+    '100%': { transform: 'translateX(0) scale(1)' }
 });
 
 const slideDownAndFade = keyframes({
-    '0%': { transform: 'translateY(-20px)' },
-    '100%': { transform: 'translateY(0)' }
+    '0%': { transform: 'translateY(-20px) scale(0)' },
+    '100%': { transform: 'translateY(0) scale(1)' }
 });
 
 const slideLeftAndFade = keyframes({
-    '0%': { transform: 'translateX(20px)' },
-    '100%': { transform: 'translateX(0)' }
+    '0%': { transform: 'translateX(20px) scale(0)' },
+    '100%': { transform: 'translateX(0) scale(1)' }
 });
 
 const StyledRoot = styled(HoverCard.Root, {
@@ -35,9 +35,9 @@ const StyledContent = styled(HoverCard.Content, {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '$gray2',
 
-    borderRadius: 8,
+    borderRadius: 16,
     boxShadow: `hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px`,
     transformOrigin: 'var(--radix-hover-card-content-transform-origin)',
     '@media (prefers-reduced-motion: no-preference)': {
@@ -94,8 +94,8 @@ const LinkPreview = ({
                         setDidBlur={setDidBlur}
                         shouldBlur={didBlur === false}
                         src={src}
-                        width={250}
-                        height={180}
+                        width={240}
+                        height={150}
                         base64={base64}
                     />
                 </a>

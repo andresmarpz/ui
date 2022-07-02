@@ -8,7 +8,13 @@ import RightArrow from './svgs/RightArrow';
 const StyledContainer = styled('div', {
     borderRadius: 6,
     border: '1px solid $gray5',
-    backgroundColor: '$gray3'
+    backgroundColor: '$gray3',
+    minWidth: '100%',
+    overflow: 'clip',
+    display: 'flex',
+    flexDirection: 'column',
+    flexBasis: 0,
+    flexWrap: 'nowrap'
 });
 
 const StyledIcon = styled('div', {
@@ -46,7 +52,8 @@ const BrowserHeader = ({ title }: { title: string }) => {
                 borderBottom: '1px solid $gray5',
                 padding: 8,
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
+                width: 'auto'
             }}>
             {/* Controls */}
             <Box
@@ -91,7 +98,11 @@ const BrowserHeader = ({ title }: { title: string }) => {
     );
 };
 
-const Browser = ({ children }: React.PropsWithChildren) => {
+interface Props {
+    center?: boolean;
+}
+
+const Browser = ({ center, children }: React.PropsWithChildren & Props) => {
     return (
         <StyledContainer>
             <BrowserHeader title={'Link-Preview'}></BrowserHeader>
@@ -99,7 +110,11 @@ const Browser = ({ children }: React.PropsWithChildren) => {
                 css={{
                     background:
                         'linear-gradient(330deg, $red5 0%, $blue5 100%);',
-                    padding: 180
+                    paddingY: 160,
+                    minWidth: 100,
+                    display: center ? 'flex' : 'block',
+                    justifyContent: 'center',
+                    alignItems: 'center'
                 }}>
                 {children}
             </Box>

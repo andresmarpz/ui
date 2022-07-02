@@ -1,14 +1,14 @@
 import { createStitches } from '@stitches/react';
 
 import {
-    gray,
-    grayDark,
-    slate,
-    slateDark,
     blue,
     blueDark,
+    gray,
+    grayDark,
     red,
-    redDark
+    redDark,
+    slate,
+    slateDark
 } from '@radix-ui/colors';
 
 export const {
@@ -45,13 +45,21 @@ export const {
         bp1: '(min-width: 480px)'
     },
     utils: {
-        marginX: (value: number) => ({
+        marginY: (value: number | string) => ({
+            marginTop: value,
+            marginBottom: value
+        }),
+        marginX: (value: number | string) => ({
             marginLeft: value,
             marginRight: value
         }),
-        paddingY: (value: number) => ({
+        paddingY: (value: number | string) => ({
             paddingTop: value,
             paddingBottom: value
+        }),
+        paddingX: (value: number | string) => ({
+            paddingLeft: value,
+            paddingRight: value
         })
     }
 });

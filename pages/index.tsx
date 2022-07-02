@@ -1,8 +1,9 @@
 import Paragraph from '@/components/Paragraph';
+import RightArrow from '@/components/svgs/RightArrow';
 import Title from '@/components/Title';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
+import NextLink from 'next/link';
 import { styled } from 'stitches.config';
 
 const Main = styled('main', {
@@ -10,6 +11,11 @@ const Main = styled('main', {
 
     maxWidth: '1024px',
     minHeight: '100vh'
+});
+
+const StyledLink = styled('a', {
+    textDecoration: 'none',
+    cursor: 'pointer'
 });
 
 const Home: NextPage = () => {
@@ -33,12 +39,13 @@ const Home: NextPage = () => {
                 </Paragraph>
 
                 <br />
-                <Title size="normal">Link Preview</Title>
-                <Image
-                    src="/assets/showcases/link-preview.png"
-                    alt=""
-                    width={600}
-                    height={400}></Image>
+                <NextLink href="/link-preview">
+                    <StyledLink>
+                        <Title size="normal">
+                            Link Preview <RightArrow />
+                        </Title>
+                    </StyledLink>
+                </NextLink>
             </Main>
         </>
     );

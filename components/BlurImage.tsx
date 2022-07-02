@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import Image from 'next/image';
 import { keyframes, styled } from '@/stitches.config';
+import Image from 'next/image';
+import { useState } from 'react';
 import Box from './Box';
 
 interface Image {
@@ -49,15 +49,16 @@ const BlurImage = ({
     return (
         <Box
             css={{
+                position: 'relative',
                 width: width,
                 height: height,
-                borderRadius: 8,
+                borderRadius: 10,
                 overflow: 'hidden'
             }}>
             <StyledImage
                 src={src}
-                width={width}
-                height={height}
+                objectFit="cover"
+                layout="fill"
                 placeholder="blur"
                 blurDataURL={base64}
                 priority={true}
