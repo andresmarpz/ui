@@ -1,9 +1,9 @@
-import * as HoverCard from '@radix-ui/react-hover-card';
-import { keyframes, styled } from 'stitches.config';
-import Link from './Link';
-import BlurImage from './BlurImage';
 import { ImageData } from '@/pages/link-preview';
+import * as HoverCard from '@radix-ui/react-hover-card';
 import { useState } from 'react';
+import { keyframes, styled } from 'stitches.config';
+import BlurImage from './BlurImage';
+import Link from './Link';
 
 const slideUpAndFade = keyframes({
     '0%': { transform: 'translateY(20px)' },
@@ -62,12 +62,14 @@ const Trigger = StyledTrigger;
 
 interface Props {
     href: string;
+    showcase?: true | undefined;
     imageData: ImageData | undefined;
     children?: React.ReactNode;
 }
 
 const LinkPreview = ({
     imageData,
+    showcase,
     children
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
     const [didBlur, setDidBlur] = useState(false);
@@ -85,7 +87,8 @@ const LinkPreview = ({
                 sideOffset={12}
                 side="top"
                 avoidCollisions={true}
-                collisionTolerance={15}>
+                collisionTolerance={15}
+                forceMount={showcase}>
                 <a href={href} target="_blank" rel="noreferrer">
                     <BlurImage
                         setDidBlur={setDidBlur}

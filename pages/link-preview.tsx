@@ -1,15 +1,14 @@
+import Box from '@/components/Box';
+import Browser from '@/components/Browser';
 import LinkPreview from '@/components/LinkPreview';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
-import { NextPage } from 'next';
-import { styled } from 'stitches.config';
-import { getPlaiceholder } from 'plaiceholder';
-import path from 'path';
 import { promises as fs } from 'fs';
-import React from 'react';
+import { NextPage } from 'next';
 import Head from 'next/head';
-import Browser from '@/components/Browser';
-import Box from '@/components/Box';
+import path from 'path';
+import { getPlaiceholder } from 'plaiceholder';
+import { styled } from 'stitches.config';
 
 const Item = styled('li', {
     marginTop: 24
