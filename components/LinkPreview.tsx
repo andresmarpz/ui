@@ -77,7 +77,7 @@ const LinkPreview = ({
     const { base64, src, href } = imageData;
 
     return (
-        <Root openDelay={90} closeDelay={120}>
+        <Root openDelay={60} closeDelay={60}>
             <Trigger asChild>
                 <Link href={href} target="_blank" rel="noreferrer">
                     {children}
