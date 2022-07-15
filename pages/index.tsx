@@ -1,10 +1,10 @@
 import Paragraph from '@/components/Paragraph';
 import RightArrow from '@/components/svgs/RightArrow';
 import Title from '@/components/Title';
+import { styled } from '@/stitches.config';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import NextLink from 'next/link';
-import { styled } from 'stitches.config';
 
 const Main = styled('main', {
     margin: 'auto',

@@ -1,9 +1,9 @@
+import BlurImage from '@/components/BlurImage';
+import Link from '@/components/Link';
 import { ImageData } from '@/pages/link-preview';
+import { keyframes, styled } from '@/stitches.config';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { useState } from 'react';
-import { keyframes, styled } from 'stitches.config';
-import BlurImage from './BlurImage';
-import Link from './Link';
 
 const slideUpAndFade = keyframes({
     '0%': { transform: 'translateY(20px) scale(0)' },

@@ -3,12 +3,12 @@ import Browser from '@/components/Browser';
 import LinkPreview from '@/components/LinkPreview';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
+import { styled } from '@/stitches.config';
 import { promises as fs } from 'fs';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import path from 'path';
 import { getPlaiceholder } from 'plaiceholder';
-import { styled } from 'stitches.config';
 
 const Item = styled('li', {
     marginTop: 24

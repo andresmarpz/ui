@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
+import { darkTheme, globalCss, theme } from '@/stitches.config';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
-import { darkTheme, globalCss, theme } from 'stitches.config';
 
 const globalStyles = globalCss({
     '*': {
@@ -11,8 +11,7 @@ const globalStyles = globalCss({
         backgroundColor: theme.colors.background,
         padding: 0,
         margin: 0,
-        fontFamily: `Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
-		 Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif`
+        fontFamily: `-apple-system, Inter, BlinkMacSystemFont, "Helvetica Neue", sans-serif`
     }
 });
 

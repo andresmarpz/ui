@@ -1,5 +1,5 @@
+import Box from '@/components/Box';
 import Image from 'next/image';
-import Box from './Box';
 
 interface Props {
     src: string;

@@ -1,7 +1,7 @@
 import Box from '@/components/Box';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import React from 'react';
-import Header from './Header';
 
 const Layout = ({ children }: React.PropsWithChildren) => {
     return (

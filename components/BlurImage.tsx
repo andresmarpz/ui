@@ -1,7 +1,7 @@
+import Box from '@/components/Box';
 import { keyframes, styled } from '@/stitches.config';
 import Image from 'next/image';
 import { useState } from 'react';
-import Box from './Box';
 
 interface Image {
     src: string;

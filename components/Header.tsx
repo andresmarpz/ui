@@ -1,14 +1,14 @@
+import Box from '@/components/Box';
+import LeftArrow from '@/components/svgs/LeftArrow';
+import Moon from '@/components/svgs/Moon';
+import Sun from '@/components/svgs/Sun';
 import { useEffectOnce } from '@/hooks/useEffectOnce';
+import { styled } from '@/stitches.config';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { styled } from 'stitches.config';
-import Box from './Box';
-import LeftArrow from './svgs/LeftArrow';
-import Moon from './svgs/Moon';
-import Sun from './svgs/Sun';
-import Image from 'next/image';
 const StyledHeader = styled('header', {
     paddingY: 24,
     display: 'flex',

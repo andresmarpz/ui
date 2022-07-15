@@ -1,5 +1,5 @@
+import { styled } from '@/stitches.config';
 import { CSSProperties } from 'react';
-import { styled } from 'stitches.config';
 
 interface Props {
     size?: 'xsmall' | 'small' | 'normal' | 'medium' | 'large'; // default: 'normal'

@@ -1,9 +1,9 @@
+import Box from '@/components/Box';
+import LeftArrow from '@/components/svgs/LeftArrow';
+import Reload from '@/components/svgs/Reload';
+import RightArrow from '@/components/svgs/RightArrow';
 import { styled } from '@/stitches.config';
 import React from 'react';
-import Box from './Box';
-import LeftArrow from './svgs/LeftArrow';
-import Reload from './svgs/Reload';
-import RightArrow from './svgs/RightArrow';
 
 const StyledContainer = styled('div', {
     borderRadius: 6,
