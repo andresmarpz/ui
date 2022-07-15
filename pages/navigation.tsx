@@ -1,9 +1,7 @@
-import { NextPage } from "next"
+import { NextPage } from 'next';
 
 const Navigation: NextPage = () => {
-	return <div>
-		Navigation component page
-	</div>
-}
+    return <div>Navigation component page</div>;
+};
 
-export default Navigation
+export default Navigation;
