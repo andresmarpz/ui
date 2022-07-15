@@ -11,16 +11,7 @@ import {
 	slateDark
 } from '@radix-ui/colors';
 
-export const {
-	styled,
-	css,
-	globalCss,
-	keyframes,
-	getCssText,
-	theme,
-	createTheme,
-	config
-} = createStitches({
+const config = createStitches({
 	theme: {
 		colors: {
 			background: 'white',
@@ -64,6 +55,8 @@ export const {
 	}
 });
 
+export const { styled, css, getCssText, theme, createTheme, keyframes, globalCss } = config;
+
 export const darkTheme = createTheme({
 	colors: {
 		background: grayDark.gray1,
@@ -86,14 +79,14 @@ export const darkTheme = createTheme({
 });
 
 export const globalStyles = globalCss({
+	'*': {
+		boxSizing: 'border-box'
+	},
 	'html, body': {
 		backgroundColor: theme.colors.background,
 		padding: 0,
 		margin: 0,
 		fontFamily: `Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
 		 Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif`
-	},
-	'*': {
-		boxSizing: 'border-box'
 	}
 });
