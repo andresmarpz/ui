@@ -86,17 +86,11 @@ export const darkTheme = createTheme({
 });
 
 export const globalStyles = globalCss({
-	'@font-face': {
-		fontFamily: 'Inter',
-		fontStyle: 'normal',
-		fontDisplay: 'optional',
-		src: 'url("/assets/fonts/inter-var-latin.woff2")'
-	},
 	'html, body': {
 		backgroundColor: theme.colors.background,
 		padding: 0,
 		margin: 0,
-		fontFamily: `-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
+		fontFamily: `Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
 		 Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif`
 	},
 	'*': {
