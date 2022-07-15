@@ -56,6 +56,14 @@ const BlurImage = ({
                 overflow: 'hidden'
             }}>
             <StyledImage
+                /*
+					transforms src url from '/assets/previews/https:@@nextjs.org@.png'
+					to 'nextjs.org'. alt then becomes a little more accessible.
+				*/
+                alt={`Visual preview of the website with url ${src
+                    .substring(25)
+                    .slice(0, -5)
+                    .replaceAll('@', '/')}`}
                 src={src}
                 objectFit="cover"
                 layout="fill"

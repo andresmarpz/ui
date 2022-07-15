@@ -3,8 +3,14 @@ import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
     return (
-        <Html>
+        <Html lang="en">
             <Head>
+                <meta
+                    name="description"
+                    content="Website displaying accessible and smooth components and interactions enhancing user experience."
+                />
+                <meta name="theme-color" content="#ffffff" />
+                <meta content="#ffffff" name="msapplication-TileColor" />
                 <style
                     id="stitches"
                     dangerouslySetInnerHTML={{ __html: getCssText() }}

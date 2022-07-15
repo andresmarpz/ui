@@ -19,11 +19,11 @@ const Span = styled('span', {
     fontStyle: 'italic'
 });
 
-const StyledHr = styled('hr', {
+const Separator = styled('hr', {
     border: 0,
     borderTop: '1px solid $gray5',
     maxWidth: '20%',
-    margin: 'auto'
+    margin: '48px auto'
 });
 
 export interface ImageData {
@@ -106,7 +106,7 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                         </LinkPreview>
                     </Box>
                 </Browser>
-                <StyledHr css={{ marginTop: 48 }} />
+                <Separator />
 
                 <Paragraph css={{ marginTop: 48 }}>
                     This component is inspired on{' '}
@@ -120,7 +120,9 @@ const Links: NextPage<Props> = ({ base64images }: Props) => {
                     &apos;s. Props to him for the idea & design.
                 </Paragraph>
 
-                <Title css={{ marginTop: 48 }}>Build</Title>
+                <Title size="medium" css={{ marginTop: 48 }}>
+                    Build
+                </Title>
                 <Paragraph>
                     In this case, it is{' '}
                     <LinkPreview

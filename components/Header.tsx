@@ -1,26 +1,30 @@
 import Box from '@/components/Box';
-import LeftArrow from '@/components/svgs/LeftArrow';
 import Moon from '@/components/svgs/Moon';
 import Sun from '@/components/svgs/Sun';
 import { useEffectOnce } from '@/hooks/useEffectOnce';
-import { styled } from '@/stitches.config';
+import { css, styled } from '@/stitches.config';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import LeftArrow from './svgs/LeftArrow';
+
 const StyledHeader = styled('header', {
     paddingY: 24,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'
 });
-const StyledBack = styled('a', {
-    padding: '8px 12px',
-    backgroundColor: '$elementBackground',
-    border: 'none',
-    borderRadius: 4,
 
+const StyledBack = css({
+    color: '$textHighlight',
+    textDecoration: 'none',
+
+    padding: '8px 12px',
+    border: 'none',
+    backgroundColor: '$elementBackground',
+    borderRadius: 4,
     transitionProperty: 'background-color, color',
     transition: '.1s ease-in-out',
     '&:hover': {
@@ -48,7 +52,9 @@ const ToggleTheme = ({ toggleTheme }: { toggleTheme: () => void }) => {
     useEffectOnce(() => setMounted(true));
 
     return (
-        <StyledToggle onClick={toggleTheme}>
+        <StyledToggle
+            aria-label={`Toggle page theme between dark and light.`}
+            onClick={toggleTheme}>
             {mounted ? (
                 resolvedTheme === 'dark' ? (
                     <Sun />
@@ -57,7 +63,7 @@ const ToggleTheme = ({ toggleTheme }: { toggleTheme: () => void }) => {
                 )
             ) : (
                 <Image
-                    alt=""
+                    alt="Placeholder for theme toggle button."
                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                     width={15}
                     height={15}
@@ -78,11 +84,18 @@ const Header = () => {
                 {router.pathname === '/' ? (
                     ''
                 ) : (
-                    <Link href="/">
-                        <StyledBack>
+                    <NextLink href={'/'}>
+                        {/* 
+							Since next/link expects an anchor tag element, we can't
+							use Stitches styled() element. Therefore we need to use css()
+							and call the function to retrieve the classname. 
+						*/}
+                        <a
+                            aria-label="Go back to homepage"
+                            className={StyledBack()}>
                             <LeftArrow />
-                        </StyledBack>
-                    </Link>
+                        </a>
+                    </NextLink>
                 )}
             </Box>
             <ToggleTheme toggleTheme={toggleTheme} />
