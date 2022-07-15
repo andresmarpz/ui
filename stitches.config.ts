@@ -77,16 +77,3 @@ export const darkTheme = createTheme({
 		...redDark
 	}
 });
-
-export const globalStyles = globalCss({
-	'*': {
-		boxSizing: 'border-box'
-	},
-	'html, body': {
-		backgroundColor: theme.colors.background,
-		padding: 0,
-		margin: 0,
-		fontFamily: `Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
-		 Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif`
-	}
-});

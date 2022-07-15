@@ -3,8 +3,12 @@ import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
     return (
-        <Html lang="en">
+        <Html>
             <Head>
+                <style
+                    id="stitches"
+                    dangerouslySetInnerHTML={{ __html: getCssText() }}
+                />
                 <link
                     rel="preload"
                     href="/assets/fonts/inter-var-latin.woff2"
@@ -24,14 +28,9 @@ export default function Document() {
 						`
                     }}
                 />
-                <style
-                    id="stitches"
-                    dangerouslySetInnerHTML={{ __html: getCssText() }}
-                />
                 <link rel="icon" href="/favicon.ico" />
-                <meta content="#ffffff" name="theme-color" />
             </Head>
-            <body className="">
+            <body>
                 <Main />
                 <NextScript />
             </body>

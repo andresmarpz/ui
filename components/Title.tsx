@@ -1,4 +1,4 @@
-import { CSSProperties } from '@stitches/react';
+import { CSSProperties } from 'react';
 import { styled } from 'stitches.config';
 
 interface Props {
