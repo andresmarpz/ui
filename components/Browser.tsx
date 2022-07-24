@@ -14,7 +14,9 @@ const StyledContainer = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     flexBasis: 0,
-    flexWrap: 'nowrap'
+    flexWrap: 'nowrap',
+
+    boxShadow: 'rgba(0, 0, 0, 0.12) 0px 8px 30px 0px'
 });
 
 const StyledIcon = styled('div', {
