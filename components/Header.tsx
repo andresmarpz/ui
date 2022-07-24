@@ -36,10 +36,21 @@ const StyledBack = css({
 });
 
 const StyledToggle = styled('button', {
-    border: '1px solid $gray4',
-    padding: '8px 12px',
+    all: 'unset',
+
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'pointer',
+    outline: '1px solid $gray4',
+    padding: '10px 12px',
     borderRadius: 4,
-    backgroundColor: '$gray3'
+    backgroundColor: '$gray3',
+
+    transition: 'outline .1s ease',
+    '&:hover': {
+        outline: '2px solid $gray10'
+    }
 });
 
 const ToggleTheme = ({ toggleTheme }: { toggleTheme: () => void }) => {

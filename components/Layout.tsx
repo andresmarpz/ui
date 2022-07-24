@@ -18,7 +18,6 @@ const Layout = ({ children }: React.PropsWithChildren) => {
                 }}>
                 {children}
             </Box>
-
             <Footer />
         </Box>
     );
