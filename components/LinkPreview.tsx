@@ -1,6 +1,6 @@
 import BlurImage from '@/components/BlurImage';
 import Link from '@/components/Link';
-import { ImageData } from '@/pages/link-preview';
+import { ImageData } from '@/lib/scanner';
 import { keyframes, styled } from '@/stitches.config';
 import * as HoverCard from '@radix-ui/react-hover-card';
 import { useState } from 'react';
