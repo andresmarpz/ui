@@ -21,7 +21,7 @@ export interface ImageData {
 /**
  * 	Generates 'mocks/paths.json' file with all links present in each page.
  */
-const scanLinks = async () => {
+export const scanLinks = async () => {
 	execute('npx react-scanner -c react-scanner.config.js');
 	console.log('Scanned links.');
 };
@@ -30,11 +30,10 @@ function timeout(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-
 /**
  *  Screenshots every link in 'mocks/paths.json' and saves it to 'mocks/previews' directory as png's.
  */
-const generatePreviews = async () => {
+export const generatePreviews = async () => {
 	const { links }: { links: string[] } = JSON.parse(fs.readFileSync('mocks/paths.json').toString());
 
 	const browser = await puppeteer.launch();
@@ -64,7 +63,7 @@ const generatePreviews = async () => {
  * 	Creates the typed JSON file 'mocks/links.json' with all links present in each page.
  */
 
-const generateData = async () => {
+export const generateData = async () => {
 	const data: ImageData[] = [];
 
 	const { links }: { links: string[] } = JSON.parse(fs.readFileSync('mocks/paths.json').toString());
@@ -83,14 +82,9 @@ const generateData = async () => {
 	fs.writeFileSync('mocks/links.json', JSON.stringify(data));
 }
 
+/**
+ * 	Returns a list of ImageData with information about each image preview.
+ * 	@returns {ImageData[]} where each ImageData contains all the data about the image
+ * 	such as href, base64, src, width, height, type.
+ */
 export const getLinkPreviews: () => ImageData[] = () => JSON.parse(fs.readFileSync('mocks/links.json').toString());
-
-export interface LinkEntry {
-	href: string
-}
-
-export const runTasks = async () => {
-	await scanLinks();
-	await generatePreviews();
-	await generateData();
-}

@@ -1,7 +1,9 @@
-import { runTasks } from "./scanner";
+import { generateData, generatePreviews, scanLinks } from "./scanner";
 
 export default async function run() {
-	runTasks()
+	await scanLinks();
+	await generatePreviews();
+	await generateData();
 }
 
 run();
