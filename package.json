@@ -4,10 +4,10 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
+        "prebuild": "ts-node -O '{\"module\": \"commonjs\"}' lib/runTasks.ts",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint",
-        "previews": "ts-node -O '{\"module\": \"commonjs\"}' lib/runTasks.ts"
+        "lint": "next lint"
     },
     "dependencies": {
         "@radix-ui/colors": "^0.1.8",
