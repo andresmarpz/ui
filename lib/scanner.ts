@@ -30,6 +30,11 @@ function timeout(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+interface PromiseResult {
+	href: string;
+	ok: boolean;
+}
+
 /**
  *  Screenshots every link in 'mocks/paths.json' and saves it to 'mocks/previews' directory as png's.
  */
@@ -39,24 +44,31 @@ export const generatePreviews = async () => {
 	const browser = await puppeteer.launch({
 		args: ['--no-sandbox', '--disable-setuid-sandbox'],
 	});
-	const page = await browser.newPage();
-	await page.setViewport({
-		width: imageWidth * 4,
-		height: imageHeight * 4
-	});
 
-	for (const link of links) {
-		await page.goto(link, { waitUntil: 'load', timeout: 0 });
+	const promises: Promise<void>[] = [];
+	links.map(link => promises.push(browser.newPage().then(async page => {
 		await page.emulateMediaFeatures([
 			{
 				name: 'prefers-color-scheme',
 				value: 'dark'
 			}
 		]);
-		console.log('Screenshotting ' + page.url());
-		await timeout(2500);
-		await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
-	}
+		await page.setViewport({
+			width: imageWidth * 4,
+			height: imageHeight * 4
+		});
+
+		try {
+			await page.goto(link, { waitUntil: 'load', timeout: 0 });
+			console.log('Screenshotting ' + page.url());
+			await timeout(2500);
+			await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
+		} catch (err) {
+			console.log(err);
+		}
+	})))
+
+	await Promise.all(promises);
 
 	await browser.close();
 }
