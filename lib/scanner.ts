@@ -79,7 +79,7 @@ export const generateData = async () => {
 
 	await Promise.all(promises);
 
-	fs.writeFileSync('mocks/links.json', JSON.stringify(data));
+	fs.writeFileSync('mocks/links.json', JSON.stringify(data, null, 4));
 }
 
 /**
