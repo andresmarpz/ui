@@ -3,12 +3,10 @@ import Browser from '@/components/Browser';
 import LinkPreview from '@/components/LinkPreview';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
+import { getLinkPreviews, ImageData } from '@/lib/scanner';
 import { styled } from '@/stitches.config';
-import { promises as fs } from 'fs';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import path from 'path';
-import { getPlaiceholder } from 'plaiceholder';
 
 const Item = styled('li', {
     marginTop: 24
@@ -26,50 +24,20 @@ const Separator = styled('hr', {
     margin: '48px auto'
 });
 
-export interface ImageData {
-    href: string;
-    base64: string;
-    src: string;
-    width: number;
-    height: number;
-    type?: string | undefined;
-}
-
 export async function getStaticProps() {
-    const base64images: ImageData[] = [];
-    const previewsDirectory = path.join(
-        process.cwd(),
-        '/public/assets/previews'
-    );
-    const filenames = await fs.readdir(previewsDirectory);
-    const previews = filenames.map(async (filename) => {
-        const { base64, img } = await getPlaiceholder(
-            '/assets/previews/' + filename
-        );
-        base64images.push({
-            href: filename
-                .replaceAll('@', '/')
-                .substring(0, filename.length - 4),
-            base64,
-            ...img
-        });
-    });
-    await Promise.all(previews);
-
+    const previews = getLinkPreviews();
     return {
-        props: {
-            base64images
-        }
+        props: { previews }
     };
 }
 
 interface Props {
-    base64images: ImageData[];
+    previews: ImageData[];
 }
 
-const Links: NextPage<Props> = ({ base64images }: Props) => {
+const Links: NextPage<Props> = ({ previews }: Props) => {
     const getData = (href: string) => {
-        return base64images.find((image) => image.href === href);
+        return previews.find((image) => image.href === href);
     };
 
     return (

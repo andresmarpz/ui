@@ -24,6 +24,6 @@
             "@/lib/*": ["lib/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/scanner.js"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/scanner1.tss"],
     "exclude": ["node_modules"]
 }
