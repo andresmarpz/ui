@@ -1,7 +1,7 @@
-import { generateData, generatePreviews, scanLinks } from "./scanner";
+import { generateData, generatePaths, generatePreviews } from "./scanner";
 
 export default async function run() {
-	await scanLinks();
+	await generatePaths();
 	await generatePreviews();
 	await generateData();
 }

@@ -21,7 +21,7 @@ export interface ImageData {
 /**
  * 	Generates 'mocks/paths.json' file with all links present in each page.
  */
-export const scanLinks = async () => {
+export const generatePaths = async () => {
 	execute('npx react-scanner -c react-scanner.config.js');
 	console.log('Scanned links.');
 };
