@@ -36,7 +36,9 @@ function timeout(ms: number) {
 export const generatePreviews = async () => {
 	const { links }: { links: string[] } = JSON.parse(fs.readFileSync('mocks/paths.json').toString());
 
-	const browser = await puppeteer.launch();
+	const browser = await puppeteer.launch({
+		args: ['--no-sandbox', '--disable-setuid-sandbox'],
+	});
 	const page = await browser.newPage();
 	await page.setViewport({
 		width: imageWidth * 4,
