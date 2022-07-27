@@ -1,4 +1,5 @@
 import Box from '@/components/Box';
+import LeftArrow from '@/components/svgs/LeftArrow';
 import Moon from '@/components/svgs/Moon';
 import Sun from '@/components/svgs/Sun';
 import { useEffectOnce } from '@/hooks/useEffectOnce';
@@ -8,7 +9,6 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import LeftArrow from './svgs/LeftArrow';
 
 const StyledHeader = styled('header', {
     paddingY: 24,
