@@ -8,7 +8,6 @@ import puppeteer from 'puppeteer';
 
 const imageWidth = 240;
 const imageHeight = 150;
-
 export interface ImageData {
 	href: string;
 	base64: string;
@@ -30,14 +29,10 @@ function timeout(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-interface PromiseResult {
-	href: string;
-	ok: boolean;
-}
-
 /**
  *  Screenshots every link in 'mocks/paths.json' and saves it to 'mocks/previews' directory as png's.
  */
+// TODO: Add a tab threshold to the function.
 export const generatePreviews = async () => {
 	const { links }: { links: string[] } = JSON.parse(fs.readFileSync('mocks/paths.json').toString());
 
@@ -45,8 +40,7 @@ export const generatePreviews = async () => {
 		args: ['--no-sandbox', '--disable-setuid-sandbox'],
 	});
 
-	const promises: Promise<void>[] = [];
-	links.map(link => promises.push(browser.newPage().then(async page => {
+	const screenshot = (link: string) => browser.newPage().then(async page => {
 		await page.emulateMediaFeatures([
 			{
 				name: 'prefers-color-scheme',
@@ -63,11 +57,13 @@ export const generatePreviews = async () => {
 			console.log('Screenshotting ' + page.url());
 			await timeout(2500);
 			await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
+			await page.close();
 		} catch (err) {
 			console.log(err);
 		}
-	})))
+	});
 
+	const promises = links.map(screenshot);
 	await Promise.all(promises);
 
 	await browser.close();
