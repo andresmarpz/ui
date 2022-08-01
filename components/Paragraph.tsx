@@ -2,7 +2,7 @@ import { styled } from '@/stitches.config';
 
 const Paragraph = styled('div', {
     color: '$textPrimary',
-    lineHeight: 1.5,
+    lineHeight: 1.6,
     verticalAlign: 'middle',
 
     variants: {
