@@ -54,13 +54,9 @@ const StyledContent = styled(HoverCard.Content, {
     }
 });
 
-const StyledTrigger = styled(HoverCard.Trigger, {
-    display: 'inline-block'
-});
-
 const Root = StyledRoot;
 const Content = StyledContent;
-const Trigger = StyledTrigger;
+const Trigger = HoverCard.Trigger;
 
 const StyledLink = styled('a', {
     lineHeight: 1.6,
@@ -108,7 +104,7 @@ const LinkPreview = ({
                         width={16}
                         height={16}
                         objectFit="contain"
-                        alt="wafwaf"
+                        alt={`${href} favicon`}
                     />
                     {children}
                 </StyledLink>
