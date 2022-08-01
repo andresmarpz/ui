@@ -63,10 +63,24 @@ const Content = StyledContent;
 const Trigger = StyledTrigger;
 
 const StyledLink = styled('a', {
+    lineHeight: 1.6,
+    position: 'relative',
+    boxSizing: 'border-box',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 4,
+    verticalAlign: 'bottom',
+
     color: '$textHighlight',
     textDecoration: 'none',
     fontWeight: 500,
-    lineHeight: 1.5
+    borderRadius: 3,
+    paddingX: 3,
+
+    transition: 'background-color 0.175s ease-in-out',
+    '&:hover': {
+        backgroundColor: '$gray3'
+    }
 });
 
 interface Props {
@@ -88,16 +102,7 @@ const LinkPreview = ({
     return (
         <Root openDelay={60} closeDelay={60}>
             <Trigger asChild>
-                <StyledLink
-                    css={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        verticalAlign: 'bottom',
-                        gap: 4
-                    }}
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer">
+                <StyledLink href={href} target="_blank" rel="noreferrer">
                     <Image
                         src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${href}&size=32`}
                         width={16}
