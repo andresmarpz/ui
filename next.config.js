@@ -15,7 +15,7 @@ const nextConfig = {
         ];
     },
     images: {
-        domains: ['cataas.com']
+        domains: ['cataas.com', 'www.google.com', 't1.gstatic.com']
     }
 };
 

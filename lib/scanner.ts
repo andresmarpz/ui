@@ -63,8 +63,7 @@ export const generatePreviews = async () => {
 		}
 	});
 
-	const promises = links.map(screenshot);
-	await Promise.all(promises);
+	await Promise.all(links.map(screenshot));
 
 	await browser.close();
 }

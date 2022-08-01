@@ -1,8 +1,8 @@
 import BlurImage from '@/components/BlurImage';
-import Link from '@/components/Link';
 import { ImageData } from '@/lib/scanner';
 import { keyframes, styled } from '@/stitches.config';
 import * as HoverCard from '@radix-ui/react-hover-card';
+import Image from 'next/image';
 import { useState } from 'react';
 
 const slideUpAndFade = keyframes({
@@ -54,11 +54,20 @@ const StyledContent = styled(HoverCard.Content, {
     }
 });
 
-const StyledTrigger = styled(HoverCard.Trigger, {});
+const StyledTrigger = styled(HoverCard.Trigger, {
+    display: 'inline-block'
+});
 
 const Root = StyledRoot;
 const Content = StyledContent;
 const Trigger = StyledTrigger;
+
+const StyledLink = styled('a', {
+    color: '$textHighlight',
+    textDecoration: 'none',
+    fontWeight: 500,
+    lineHeight: 1.5
+});
 
 interface Props {
     href: string;
@@ -79,9 +88,25 @@ const LinkPreview = ({
     return (
         <Root openDelay={60} closeDelay={60}>
             <Trigger asChild>
-                <Link href={href} target="_blank" rel="noreferrer">
+                <StyledLink
+                    css={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        verticalAlign: 'bottom',
+                        gap: 4
+                    }}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer">
+                    <Image
+                        src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${href}&size=32`}
+                        width={16}
+                        height={16}
+                        objectFit="contain"
+                        alt="wafwaf"
+                    />
                     {children}
-                </Link>
+                </StyledLink>
             </Trigger>
             <Content
                 sideOffset={12}

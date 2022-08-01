@@ -83,7 +83,7 @@ const Links: NextPage<Props> = ({ previews }: Props) => {
                         imageData={getData(
                             'https://twitter.com/raunofreiberg/'
                         )}>
-                        @raunofreiberg
+                        raunofreiberg
                     </LinkPreview>
                     &apos;s. Props to him for the idea & design.
                 </Paragraph>
