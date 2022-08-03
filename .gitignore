@@ -34,5 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-public/assets/previews/*.png
+public/assets/previews
+public/assets/previews/
 mocks/*.json

@@ -1,7 +1,8 @@
 import BlurImage from '@/components/BlurImage';
 import { ImageData } from '@/lib/scanner';
-import { keyframes, styled } from '@/stitches.config';
+import { keyframes, styled, theme } from '@/stitches.config';
 import * as HoverCard from '@radix-ui/react-hover-card';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -92,6 +93,9 @@ const LinkPreview = ({
     children
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
     const [didBlur, setDidBlur] = useState(false);
+
+    const { resolvedTheme } = useTheme();
+
     if (!imageData) return <></>;
     const { base64, src, href, favicon } = imageData;
 
@@ -100,11 +104,17 @@ const LinkPreview = ({
             <Trigger asChild>
                 <StyledLink href={href} target="_blank" rel="noreferrer">
                     <Image
+                        style={{
+                            color: resolvedTheme
+                                ? theme.colors.textHighlight.toString()
+                                : 'currentColor'
+                        }}
                         src={favicon}
                         width={16}
                         height={16}
                         objectFit="contain"
                         priority={true}
+                        quality={100}
                         alt={`${href} favicon`}
                     />
                     {children}

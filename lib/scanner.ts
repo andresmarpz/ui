@@ -94,6 +94,8 @@ export const generatePreviews = async () => {
 			favicons.forEach(favicon => {
 				if (!bestFavicon || bestFavicon.extension !== 'ico')
 					bestFavicon = favicon;
+				else if (favicon.extension === 'ico' && bestFavicon.size < favicon.size)
+					bestFavicon = favicon;
 			})
 
 			console.log('Downloading ' + bestFavicon.url);
@@ -111,6 +113,9 @@ export const generatePreviews = async () => {
 
 /**
  * 	Creates the typed JSON file 'mocks/links.json' with all links present in each page.
+ * 
+ * 	Favicons are a pain because there is no one-fits-all API that pulls them.
+ * 	So the workaround here is to fallback between several APIs or a mix of 
  */
 
 export const generateData = async () => {
@@ -120,18 +125,21 @@ export const generateData = async () => {
 	const promises = links.map(async (link) => {
 		const { base64, img } = await getPlaiceholder(`/assets/previews/${link.replaceAll("/", "@")}.png`);
 
-		const yandexImage = await Jimp.read(`https://favicon.yandex.net/favicon/${new URL(link).hostname}`);
+		const hostname = new URL(link).hostname;
+		const yandexImage = await Jimp.read(`https://favicon.yandex.net/favicon/${hostname}`);
 		const promises = Array.from(Array(15).keys()).map(async pixel => {
-			const { r, g, b } = Jimp.intToRGBA(yandexImage.getPixelColor(pixel, 0));
+			const { r, g, b } = Jimp.intToRGBA(yandexImage.getPixelColor(pixel, 7));
+			console.log((r === 230) && (g === 230) && (b === 230));
 			return (r === 230) && (g === 230) && (b === 230);
 		});
 		await Promise.all(promises);
 		const isYandex = !promises.every(pixel => pixel);
+		console.log(`${link} is ${isYandex}`)
 
 		const path = `/assets/previews/${link.replaceAll("/", "@")}`;
 		const hasFaviconIco = fs.existsSync(`public${path}-favicon.ico`);
 		const hasFaviconPng = fs.existsSync(`public${path}-favicon.png`);
-		const favicon: string = isYandex ? `https://favicon.yandex.net/favicon/${new URL(link).hostname}` :
+		const favicon: string = isYandex ? `https://favicon.yandex.net/favicon/${hostname}` :
 			hasFaviconIco ? `${path}-favicon.ico` :
 				hasFaviconPng ? `${path}-favicon.png` : '';
 
