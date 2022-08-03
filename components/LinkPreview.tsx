@@ -104,6 +104,7 @@ const LinkPreview = ({
                         width={16}
                         height={16}
                         objectFit="contain"
+                        priority={true}
                         alt={`${href} favicon`}
                     />
                     {children}
