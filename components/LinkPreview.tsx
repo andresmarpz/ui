@@ -93,14 +93,14 @@ const LinkPreview = ({
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
     const [didBlur, setDidBlur] = useState(false);
     if (!imageData) return <></>;
-    const { base64, src, href } = imageData;
+    const { base64, src, href, favicon } = imageData;
 
     return (
         <Root openDelay={60} closeDelay={60}>
             <Trigger asChild>
                 <StyledLink href={href} target="_blank" rel="noreferrer">
                     <Image
-                        src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${href}&size=32`}
+                        src={favicon}
                         width={16}
                         height={16}
                         objectFit="contain"

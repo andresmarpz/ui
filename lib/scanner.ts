@@ -1,8 +1,10 @@
+import axios from 'axios';
 import { exec } from 'child_process';
 import fs from 'fs';
 import utils from 'util';
 const execute = utils.promisify(exec);
 
+import Jimp from 'jimp';
 import { getPlaiceholder } from 'plaiceholder';
 import puppeteer from 'puppeteer';
 
@@ -10,6 +12,7 @@ const imageWidth = 240;
 const imageHeight = 150;
 export interface ImageData {
 	href: string;
+	favicon: string;
 	base64: string;
 	src: string;
 	width: number;
@@ -29,6 +32,26 @@ function timeout(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+const downloadImage = (url: string, image_path: string) =>
+	axios({
+		url,
+		responseType: 'stream',
+	}).then(
+		response =>
+			new Promise<void>((resolve, reject) => {
+				response.data
+					.pipe(fs.createWriteStream(image_path))
+					.on('finish', () => resolve())
+					.on('error', () => reject());
+			}),
+	);
+
+interface FaviconEntry {
+	url: string,
+	extension: string,
+	size: number
+}
+
 /**
  *  Screenshots every link in 'mocks/paths.json' and saves it to 'mocks/previews' directory as png's.
  */
@@ -40,7 +63,7 @@ export const generatePreviews = async () => {
 		args: ['--no-sandbox', '--disable-setuid-sandbox'],
 	});
 
-	const screenshot = (link: string) => browser.newPage().then(async page => {
+	const preview = (link: string) => browser.newPage().then(async page => {
 		await page.emulateMediaFeatures([
 			{
 				name: 'prefers-color-scheme',
@@ -57,13 +80,31 @@ export const generatePreviews = async () => {
 			console.log('Screenshotting ' + page.url());
 			await timeout(2500);
 			await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
+
 			await page.close();
 		} catch (err) {
 			console.log(err);
 		}
 	});
 
-	await Promise.all(links.map(screenshot));
+	const favicon = async (link: string) => {
+		try {
+			const favicons: FaviconEntry[] = await axios.get(`http://grab-favicons.herokuapp.com/api/v1/grab-favicons?url=${new URL(link).hostname}`).then(res => res.data);
+			let bestFavicon: FaviconEntry = favicons[0];
+			favicons.forEach(favicon => {
+				if (!bestFavicon || bestFavicon.extension !== 'ico')
+					bestFavicon = favicon;
+			})
+
+			console.log('Downloading ' + bestFavicon.url);
+			await downloadImage(bestFavicon.url, `./public/assets/previews/${link.replaceAll("/", "@")}-favicon.${bestFavicon.extension}`);
+
+			return bestFavicon.url;
+			// eslint-disable-next-line no-empty
+		} catch (ignored) { }
+	};
+
+	await Promise.all([...links.map(preview), ...links.map(favicon)]);
 
 	await browser.close();
 }
@@ -79,8 +120,24 @@ export const generateData = async () => {
 	const promises = links.map(async (link) => {
 		const { base64, img } = await getPlaiceholder(`/assets/previews/${link.replaceAll("/", "@")}.png`);
 
+		const yandexImage = await Jimp.read(`https://favicon.yandex.net/favicon/${new URL(link).hostname}`);
+		const promises = Array.from(Array(15).keys()).map(async pixel => {
+			const { r, g, b } = Jimp.intToRGBA(yandexImage.getPixelColor(pixel, 0));
+			return (r === 230) && (g === 230) && (b === 230);
+		});
+		await Promise.all(promises);
+		const isYandex = !promises.every(pixel => pixel);
+
+		const path = `/assets/previews/${link.replaceAll("/", "@")}`;
+		const hasFaviconIco = fs.existsSync(`public${path}-favicon.ico`);
+		const hasFaviconPng = fs.existsSync(`public${path}-favicon.png`);
+		const favicon: string = isYandex ? `https://favicon.yandex.net/favicon/${new URL(link).hostname}` :
+			hasFaviconIco ? `${path}-favicon.ico` :
+				hasFaviconPng ? `${path}-favicon.png` : '';
+
 		data.push({
 			href: link,
+			favicon,
 			base64,
 			...img
 		});
