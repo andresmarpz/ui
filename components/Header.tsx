@@ -22,17 +22,11 @@ const StyledBack = css({
     textDecoration: 'none',
 
     padding: '8px 12px',
-    border: 'none',
-    backgroundColor: '$elementBackground',
     borderRadius: 4,
     transitionProperty: 'background-color, color',
-    transition: '.1s ease-in-out',
     '&:hover': {
-        backgroundColor: '$hoverElementBackground'
+        backgroundColor: '$gray3'
     },
-    '&:focus': {
-        outline: '1px solid $activeElementBackground'
-    }
 });
 
 const StyledToggle = styled('button', {
@@ -50,8 +44,11 @@ const StyledToggle = styled('button', {
     transition: 'border box-shadow .1s ease',
     '&:hover': {
         border: '1px solid $gray8',
-		boxShadow: `0 0 0 1px ${theme.colors.gray8}`
-    }
+        boxShadow: `0 0 0 1px ${theme.colors.gray8}`
+    },
+	'&:focus': {
+		outline: '2px solid currentColor'
+	}
 });
 
 const ToggleTheme = ({ toggleTheme }: { toggleTheme: () => void }) => {
