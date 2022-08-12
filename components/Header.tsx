@@ -3,7 +3,7 @@ import LeftArrow from '@/components/svgs/LeftArrow';
 import Moon from '@/components/svgs/Moon';
 import Sun from '@/components/svgs/Sun';
 import { useEffectOnce } from '@/hooks/useEffectOnce';
-import { css, styled } from '@/stitches.config';
+import { css, styled, theme } from '@/stitches.config';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -42,14 +42,15 @@ const StyledToggle = styled('button', {
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
-    outline: '1px solid $gray4',
+    border: '1px solid $gray4',
     padding: '10px 12px',
     borderRadius: 4,
     backgroundColor: '$gray3',
 
-    transition: 'outline .1s ease',
+    transition: 'border box-shadow .1s ease',
     '&:hover': {
-        outline: '2px solid $gray10'
+        border: '1px solid $gray8',
+		boxShadow: `0 0 0 1px ${theme.colors.gray8}`
     }
 });
 
