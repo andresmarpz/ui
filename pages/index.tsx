@@ -46,6 +46,13 @@ const Home: NextPage = () => {
                         </Title>
                     </StyledLink>
                 </NextLink>
+                <NextLink href="/gradients">
+                    <StyledLink>
+                        <Title size="normal">
+                            Gradients <RightArrow />
+                        </Title>
+                    </StyledLink>
+                </NextLink>
             </Main>
         </>
     );
