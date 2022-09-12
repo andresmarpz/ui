@@ -1,4 +1,4 @@
-import Box from '@/components/Box';
+import Box from '@/components/global/Box';
 import LeftArrow from '@/components/svgs/LeftArrow';
 import Moon from '@/components/svgs/Moon';
 import Sun from '@/components/svgs/Sun';

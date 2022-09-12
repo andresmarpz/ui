@@ -1,6 +1,6 @@
-import Box from '@/components/Box';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Box from '@/components/global/Box';
+import Footer from '@/components/global/Footer';
+import Header from '@/components/global/Header';
 import React from 'react';
 
 const Layout = ({ children }: React.PropsWithChildren) => {

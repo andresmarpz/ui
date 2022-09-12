@@ -1,8 +1,8 @@
-import Box from '@/components/Box';
-import Browser from '@/components/Browser';
-import LinkPreview from '@/components/LinkPreview';
-import Paragraph from '@/components/Paragraph';
-import Title from '@/components/Title';
+import Box from '@/components/global/Box';
+import Browser from '@/components/global/Browser';
+import LinkPreview from '@/components/linkpreview/LinkPreview';
+import Paragraph from '@/components/global/Paragraph';
+import Title from '@/components/global/Title';
 import { getLinkPreviews, ImageData } from '@/lib/scanner';
 import { styled } from '@/stitches.config';
 import { NextPage } from 'next';

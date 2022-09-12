@@ -1,4 +1,4 @@
-import BlurImage from '@/components/BlurImage';
+import BlurImage from '@/components/global/BlurImage';
 import { ImageData } from '@/lib/scanner';
 import { keyframes, styled, theme } from '@/stitches.config';
 import * as HoverCard from '@radix-ui/react-hover-card';

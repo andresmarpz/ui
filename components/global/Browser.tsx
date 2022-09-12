@@ -1,4 +1,4 @@
-import Box from '@/components/Box';
+import Box from '@/components/global/Box';
 import LeftArrow from '@/components/svgs/LeftArrow';
 import Reload from '@/components/svgs/Reload';
 import RightArrow from '@/components/svgs/RightArrow';

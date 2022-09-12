@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout';
+import Layout from '@/components/global/Layout';
 import { darkTheme, globalCss, theme } from '@/stitches.config';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';

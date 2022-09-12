@@ -1,6 +1,6 @@
-import Paragraph from '@/components/Paragraph';
+import Paragraph from '@/components/global/Paragraph';
 import RightArrow from '@/components/svgs/RightArrow';
-import Title from '@/components/Title';
+import Title from '@/components/global/Title';
 import { styled } from '@/stitches.config';
 import type { NextPage } from 'next';
 import Head from 'next/head';
