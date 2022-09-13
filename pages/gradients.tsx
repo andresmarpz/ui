@@ -5,7 +5,7 @@ const Gradients: NextPage = () => {
 	return <>
 		<h1>Gradients!</h1>
 
-		<TextGradient>this is a text gradient</TextGradient>
+		<TextGradient gradient="linear-gradient(to right, #30CFD0 0%, #330867 100%)">this is a text gradient</TextGradient>
 	</>
 }
 
