@@ -3,8 +3,8 @@ import { exec } from 'child_process';
 import fs from 'fs';
 import utils from 'util';
 const execute = utils.promisify(exec);
+import { getFavicons } from '@andresmarpz/favicons'
 
-import Jimp from 'jimp';
 import { getPlaiceholder } from 'plaiceholder';
 import puppeteer from 'puppeteer';
 
@@ -45,13 +45,6 @@ const downloadImage = (url: string, image_path: string) =>
 					.on('error', () => reject());
 			}),
 	);
-
-interface FaviconEntry {
-	url: string,
-	extension: string,
-	size: number
-}
-
 /**
  *  Screenshots every link in 'mocks/paths.json' and saves it to 'mocks/previews' directory as png's.
  */
@@ -64,33 +57,33 @@ export const generatePreviews = async () => {
 	});
 
 	const preview = (link: string) => browser.newPage().then(async page => {
-		await page.emulateMediaFeatures([
-			{
+		await page.emulateMediaFeatures([{
 				name: 'prefers-color-scheme',
 				value: 'dark'
-			}
-		]);
+		}]);
 		await page.setViewport({
 			width: imageWidth * 4,
 			height: imageHeight * 4
 		});
 
 		try {
-			await page.goto(link, { waitUntil: 'load', timeout: 0 });
+			await page.goto(link, { waitUntil: 'load', timeout: 10000 });
 			console.log('Screenshotting ' + page.url());
 			await timeout(2500);
 			await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
-
+		} catch (ignored){
+			console.log('Failed to screenshot ' + link);
+		} finally {
 			await page.close();
-		} catch (err) {
-			console.log(err);
 		}
 	});
 
 	const favicon = async (link: string) => {
-		try {
-			const favicons: FaviconEntry[] = await axios.get(`http://grab-favicons.herokuapp.com/api/v1/grab-favicons?url=${new URL(link).hostname}`).then(res => res.data);
-			let bestFavicon: FaviconEntry = favicons[0];
+		const favicons = await getFavicons(link)
+			.then(favs => favs.sort((a, b) => b.size - a.size))
+			.catch(() => console.log('Failed to get favicons for ' + link));
+		if(favicons){
+			let bestFavicon = favicons[0];
 			favicons.forEach(favicon => {
 				if (!bestFavicon || bestFavicon.extension !== 'ico')
 					bestFavicon = favicon;
@@ -98,12 +91,8 @@ export const generatePreviews = async () => {
 					bestFavicon = favicon;
 			})
 
-			console.log('Downloading ' + bestFavicon.url);
 			await downloadImage(bestFavicon.url, `./public/assets/previews/${link.replaceAll("/", "@")}-favicon.${bestFavicon.extension}`);
-
-			return bestFavicon.url;
-			// eslint-disable-next-line no-empty
-		} catch (ignored) { }
+		}
 	};
 
 	await Promise.all([...links.map(preview), ...links.map(favicon)]);
@@ -120,39 +109,24 @@ export const generatePreviews = async () => {
 
 export const generateData = async () => {
 	const data: ImageData[] = [];
-
 	const { links }: { links: string[] } = JSON.parse(fs.readFileSync('mocks/paths.json').toString());
-	const promises = links.map(async (link) => {
+
+	const promises = links.map(async link => {
+		const imagePath = `./public/assets/previews/${link.replaceAll("/", "@")}.png`;
+		if(!fs.existsSync(imagePath)) return;
+
+		const favicon = fs.readdirSync(`./public/assets/previews/`).find(file => file.startsWith(link.replaceAll("/", "@")) && file.includes('favicon')) ?? '';
 		const { base64, img } = await getPlaiceholder(`/assets/previews/${link.replaceAll("/", "@")}.png`);
-
-		const hostname = new URL(link).hostname;
-		const yandexImage = await Jimp.read(`https://favicon.yandex.net/favicon/${hostname}`);
-		const promises = Array.from(Array(15).keys()).map(async pixel => {
-			const { r, g, b } = Jimp.intToRGBA(yandexImage.getPixelColor(pixel, 7));
-			console.log((r === 230) && (g === 230) && (b === 230));
-			return (r === 230) && (g === 230) && (b === 230);
-		});
-		await Promise.all(promises);
-		const isYandex = !promises.every(pixel => pixel);
-		console.log(`${link} is ${isYandex}`)
-
-		const path = `/assets/previews/${link.replaceAll("/", "@")}`;
-		const hasFaviconIco = fs.existsSync(`public${path}-favicon.ico`);
-		const hasFaviconPng = fs.existsSync(`public${path}-favicon.png`);
-		const favicon: string = isYandex ? `https://favicon.yandex.net/favicon/${hostname}` :
-			hasFaviconIco ? `${path}-favicon.ico` :
-				hasFaviconPng ? `${path}-favicon.png` : '';
 
 		data.push({
 			href: link,
-			favicon,
+			favicon: `/assets/previews/${favicon}`,
 			base64,
 			...img
-		});
+		})
 	})
 
 	await Promise.all(promises);
-
 	fs.writeFileSync('mocks/links.json', JSON.stringify(data, null, 4));
 }
 
