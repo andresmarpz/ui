@@ -1,7 +1,7 @@
 module.exports = {
     crawlFrom: './pages',
     includeSubComponents: true,
-    importedFrom: '@/components/LinkPreview',
+    importedFrom: '@/components/linkpreview/LinkPreview',
     processors: [
         'raw-report',
         async ({ report, output }) => {
@@ -9,14 +9,19 @@ module.exports = {
                 links: []
             };
 
-            const entries = report['LinkPreview']['instances'];
+			try{
+				const entries = report['LinkPreview']['instances'];
 
-            entries.forEach((entry) => {
-                const url = entry['props']['href'];
-                result.links.push(url);
-            });
-
-            output(result, 'mocks/paths.json');
+				entries.forEach((entry) => {
+					const url = entry['props']['href'];
+					result.links.push(url);
+				});
+	
+				output(result, 'mocks/paths.json');
+			}catch(err){
+				console.error(err);
+			}
+            
 
             return result;
         }
