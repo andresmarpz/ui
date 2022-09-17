@@ -57,10 +57,10 @@ export const generatePreviews = async () => {
 	});
 
 	const preview = (link: string) => browser.newPage().then(async page => {
-		await page.emulateMediaFeatures([{
-				name: 'prefers-color-scheme',
-				value: 'dark'
-		}]);
+		// await page.emulateMediaFeatures([{
+		// 		name: 'prefers-color-scheme',
+		// 		value: 'dark'
+		// }]);
 		await page.setViewport({
 			width: imageWidth * 4,
 			height: imageHeight * 4
