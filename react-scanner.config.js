@@ -4,8 +4,8 @@ module.exports = {
     importedFrom: '@/components/linkpreview/LinkPreview',
     processors: [
         'raw-report',
-        async ({ report, output }) => {
-            let result = {
+        ({ report, output }) => new Promise((resolve, reject) => {
+			let result = {
                 links: []
             };
 
@@ -19,11 +19,11 @@ module.exports = {
 	
 				output(result, 'mocks/paths.json');
 			}catch(err){
-				console.error(err);
+				reject(err)
+				return undefined;
 			}
-            
 
-            return result;
-        }
+            resolve()
+		})
     ]
 };
