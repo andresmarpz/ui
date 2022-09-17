@@ -56,11 +56,14 @@ export const generatePreviews = async () => {
 		args: ['--no-sandbox', '--disable-setuid-sandbox'],
 	});
 
+	if(!fs.existsSync('./public/assets/previews'))
+		fs.mkdirSync('./public/assets/previews');
+
 	const preview = (link: string) => browser.newPage().then(async page => {
-		// await page.emulateMediaFeatures([{
-		// 		name: 'prefers-color-scheme',
-		// 		value: 'dark'
-		// }]);
+		await page.emulateMediaFeatures([{
+				name: 'prefers-color-scheme',
+				value: 'dark'
+		}]);
 		await page.setViewport({
 			width: imageWidth * 4,
 			height: imageHeight * 4
@@ -78,20 +81,19 @@ export const generatePreviews = async () => {
 		}
 	});
 
-	// const favicon = async (link: string) => {
-	// 	const favicons = await getFavicons(link)
-	// 		.catch(() => console.log('Failed to get favicons for ' + link));
-	// 	if(favicons){
-	// 		const bestFavicon = favicons.find(icon => icon.extension === 'ico') ?? 
-	// 			favicons.find(icon => icon.extension === 'svg') ?? favicons[0];
+	const favicon = async (link: string) => {
+		const favicons = await getFavicons(link)
+			.catch(() => console.log('Failed to get favicons for ' + link));
+		if(favicons){
+			const bestFavicon = favicons.find(icon => icon.extension === 'ico') ?? 
+				favicons.find(icon => icon.extension === 'svg') ?? favicons[0];
 
-	// 		await downloadImage(bestFavicon.url, `./public/assets/previews/${link.replaceAll("/", "@")}-favicon.${bestFavicon.extension}`);
-	// 	}
-	// };
+			await downloadImage(bestFavicon.url, `./public/assets/previews/${link.replaceAll("/", "@")}-favicon.${bestFavicon.extension}`);
+		}
+	};
 
 	try{
-		// await Promise.all([...links.map(preview), ...links.map(favicon)]);
-		await Promise.all([...links.map(preview)]);
+		await Promise.all([...links.map(preview), ...links.map(favicon)]);
 	}catch(err){ console.error(err) }
 
 	await browser.close();
