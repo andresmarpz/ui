@@ -31,6 +31,7 @@ const StyledRoot = styled(HoverCard.Root, {
 });
 
 const StyledContent = styled(HoverCard.Content, {
+	zIndex: 20,
     padding: 8,
     margin: 0,
     display: 'flex',
@@ -94,8 +95,6 @@ const LinkPreview = ({
 }: Props & React.HTMLProps<HTMLAnchorElement>) => {
     const [didBlur, setDidBlur] = useState(false);
 
-    const { resolvedTheme } = useTheme();
-
     if (!imageData) return <></>;
     const { base64, src, href, favicon } = imageData;
 
@@ -104,11 +103,6 @@ const LinkPreview = ({
             <Trigger asChild>
                 <StyledLink href={href} target="_blank" rel="noreferrer">
                     <Image
-                        style={{
-                            color: resolvedTheme
-                                ? theme.colors.textHighlight.toString()
-                                : 'currentColor'
-                        }}
                         src={favicon}
                         width={16}
                         height={16}
