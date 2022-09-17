@@ -71,8 +71,8 @@ export const generatePreviews = async () => {
 			console.log('Screenshotting ' + page.url());
 			await timeout(2500);
 			await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
-		} catch (ignored){
-			console.log('Failed to screenshot ' + link);
+		} catch (err){
+			console.error(err);
 		} finally {
 			await page.close();
 		}
