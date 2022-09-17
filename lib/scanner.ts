@@ -56,42 +56,42 @@ export const generatePreviews = async () => {
 		args: ['--no-sandbox', '--disable-setuid-sandbox'],
 	});
 
-	// const preview = (link: string) => browser.newPage().then(async page => {
-	// 	// await page.emulateMediaFeatures([{
-	// 	// 		name: 'prefers-color-scheme',
-	// 	// 		value: 'dark'
-	// 	// }]);
-	// 	await page.setViewport({
-	// 		width: imageWidth * 4,
-	// 		height: imageHeight * 4
-	// 	});
+	const preview = (link: string) => browser.newPage().then(async page => {
+		// await page.emulateMediaFeatures([{
+		// 		name: 'prefers-color-scheme',
+		// 		value: 'dark'
+		// }]);
+		await page.setViewport({
+			width: imageWidth * 4,
+			height: imageHeight * 4
+		});
 
-	// 	try {
-	// 		await page.goto(link, { waitUntil: 'load', timeout: 10000 });
-	// 		console.log('Screenshotting ' + page.url());
-	// 		await timeout(2500);
-	// 		await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
-	// 		await page.close();
-	// 	} catch (err){
-	// 		console.error(err);
-	// 		await page.close();
-	// 	}
-	// });
-
-	const favicon = async (link: string) => {
-		const favicons = await getFavicons(link)
-			.catch(() => console.log('Failed to get favicons for ' + link));
-		if(favicons){
-			const bestFavicon = favicons.find(icon => icon.extension === 'ico') ?? 
-				favicons.find(icon => icon.extension === 'svg') ?? favicons[0];
-
-			await downloadImage(bestFavicon.url, `./public/assets/previews/${link.replaceAll("/", "@")}-favicon.${bestFavicon.extension}`);
+		try {
+			await page.goto(link, { waitUntil: 'load', timeout: 10000 });
+			console.log('Screenshotting ' + page.url());
+			await timeout(2500);
+			await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
+			await page.close();
+		} catch (err){
+			console.error(err);
+			await page.close();
 		}
-	};
+	});
+
+	// const favicon = async (link: string) => {
+	// 	const favicons = await getFavicons(link)
+	// 		.catch(() => console.log('Failed to get favicons for ' + link));
+	// 	if(favicons){
+	// 		const bestFavicon = favicons.find(icon => icon.extension === 'ico') ?? 
+	// 			favicons.find(icon => icon.extension === 'svg') ?? favicons[0];
+
+	// 		await downloadImage(bestFavicon.url, `./public/assets/previews/${link.replaceAll("/", "@")}-favicon.${bestFavicon.extension}`);
+	// 	}
+	// };
 
 	try{
 		// await Promise.all([...links.map(preview), ...links.map(favicon)]);
-		await Promise.all([...links.map(favicon)]);
+		await Promise.all([...links.map(preview)]);
 	}catch(err){ console.error(err) }
 
 	await browser.close();
