@@ -80,16 +80,10 @@ export const generatePreviews = async () => {
 
 	const favicon = async (link: string) => {
 		const favicons = await getFavicons(link)
-			.then(favs => favs.sort((a, b) => b.size - a.size))
 			.catch(() => console.log('Failed to get favicons for ' + link));
 		if(favicons){
-			let bestFavicon = favicons[0];
-			favicons.forEach(favicon => {
-				if (!bestFavicon || bestFavicon.extension !== 'ico')
-					bestFavicon = favicon;
-				else if (favicon.extension === 'ico' && bestFavicon.size < favicon.size)
-					bestFavicon = favicon;
-			})
+			const bestFavicon = favicons.find(icon => icon.extension === 'ico') ?? 
+				favicons.find(icon => icon.extension === 'svg') ?? favicons[0];
 
 			await downloadImage(bestFavicon.url, `./public/assets/previews/${link.replaceAll("/", "@")}-favicon.${bestFavicon.extension}`);
 		}
