@@ -56,27 +56,27 @@ export const generatePreviews = async () => {
 		args: ['--no-sandbox', '--disable-setuid-sandbox'],
 	});
 
-	const preview = (link: string) => browser.newPage().then(async page => {
-		// await page.emulateMediaFeatures([{
-		// 		name: 'prefers-color-scheme',
-		// 		value: 'dark'
-		// }]);
-		await page.setViewport({
-			width: imageWidth * 4,
-			height: imageHeight * 4
-		});
+	// const preview = (link: string) => browser.newPage().then(async page => {
+	// 	// await page.emulateMediaFeatures([{
+	// 	// 		name: 'prefers-color-scheme',
+	// 	// 		value: 'dark'
+	// 	// }]);
+	// 	await page.setViewport({
+	// 		width: imageWidth * 4,
+	// 		height: imageHeight * 4
+	// 	});
 
-		try {
-			await page.goto(link, { waitUntil: 'load', timeout: 10000 });
-			console.log('Screenshotting ' + page.url());
-			await timeout(2500);
-			await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
-		} catch (err){
-			console.error(err);
-		} finally {
-			await page.close();
-		}
-	});
+	// 	try {
+	// 		await page.goto(link, { waitUntil: 'load', timeout: 10000 });
+	// 		console.log('Screenshotting ' + page.url());
+	// 		await timeout(2500);
+	// 		await page.screenshot({ path: `./public/assets/previews/${link.replaceAll("/", "@")}.png` });
+	// 		await page.close();
+	// 	} catch (err){
+	// 		console.error(err);
+	// 		await page.close();
+	// 	}
+	// });
 
 	const favicon = async (link: string) => {
 		const favicons = await getFavicons(link)
@@ -90,7 +90,8 @@ export const generatePreviews = async () => {
 	};
 
 	try{
-		await Promise.all([...links.map(preview), ...links.map(favicon)]);
+		// await Promise.all([...links.map(preview), ...links.map(favicon)]);
+		await Promise.all([...links.map(favicon)]);
 	}catch(err){ console.error(err) }
 
 	await browser.close();
