@@ -89,7 +89,9 @@ export const generatePreviews = async () => {
 		}
 	};
 
-	await Promise.all([...links.map(preview), ...links.map(favicon)]);
+	try{
+		await Promise.all([...links.map(preview), ...links.map(favicon)]);
+	}catch(err){ console.error(err) }
 
 	await browser.close();
 }
