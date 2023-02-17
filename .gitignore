@@ -33,7 +33,4 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-public/assets/previews
-public/assets/previews/
-mocks/*.json
+next-env.d.ts
