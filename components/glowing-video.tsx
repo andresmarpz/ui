@@ -44,14 +44,14 @@ const GlowingVideo = forwardRef<HTMLVideoElement, Props>(
       if (autoPlay) video.play()
 
       return () => video.removeEventListener("play", updateCanvas)
-    }, [])
+    }, [autoPlay])
 
     return (
       <div className={cn("relative", containerClassName)}>
         <canvas
           className={cn(
             "blur-2xl absolute z-10",
-            "top-[-25px] left-[-25px] opacity-75"
+            "top-[-25px] left-[-25px] opacity-50"
           )}
           ref={canvasRef}
         />
